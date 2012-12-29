@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://robteix.github.com/robteix/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/robteix/"/>
+  <updated>2012-12-29T10:54:28-03:00</updated>
+  <id>http://robteix.github.com/robteix/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Container changes in C++11]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11/"/>
+    <updated>2012-12-15T11:41:36-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11</id>
+    <content type="html"><![CDATA[<p>The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find that containers have received some special love.</p>
+
+<h1>Initialization</h1>
+
+<p>C++ was long behind modern languages when it came to initializing containers. While you could do</p>
+
+<p>[cpp]int a[] = {1, 2, 3};[/cpp]</p>
+
+<p>for simple arrays, things tended to get more verbose for more complex containers:</p>
+
+<p>[cpp]
+vector<string> v;
+v.push_back(&#8220;One&#8221;);
+v.push_back(&#8220;Two&#8221;);
+v.push_back(&#8220;Three&#8221;);
+[/cpp]</p>
+
+<p>C++11 has introduced an easier, simpler way to initialize this:</p>
+
+<p>[cpp]
+vector<string> v = {&#8220;One&#8221;, &#8220;Two&#8221;, &#8220;Three&#8221;};
+[/cpp]</p>
+
+<p>The effects of the changes are even better for things like <strong>map</strong>s, which could get cumbersome quickly:</p>
+
+<p>[cpp]
+map&lt;string, vector<string> > m;
+vector<string> v1;
+v1.push_back(&#8220;A&#8221;);
+v1.push_back(&#8220;B&#8221;);
+v1.push_back(&#8220;C&#8221;);</p>
+
+<p>vector<string> v2;
+v2.push_back(&#8220;A&#8221;);
+v2.push_back(&#8220;B&#8221;);
+v2.push_back(&#8220;C&#8221;);</p>
+
+<p>m[&#8220;One&#8221;] = v1;
+m[&#8220;Two&#8221;] = v2;
+[/cpp]</p>
+
+<p>This can now be expressed as:</p>
+
+<p>[cpp]
+map&lt;string, vector<string>> m = One,</p>
+
+<pre><code>                             {"Two", {"Z", "Y", "X"}}};
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Much simpler and in line with most modern languages. As an aside, there&#8217;s another change in C++11 that would be easy to miss in the code above. The declaration</p>
+
+<p>[cpp]map&lt;string, vector<string>> m;[/cpp]</p>
+
+<p>was illegal until now due to >> always being evaluated to the right-shift operator; a space would always be required, like</p>
+
+<p>[cpp]map&lt;string, vector<string> > m[/cpp]</p>
+
+<p>No longer the case.</p>
+
+<h1>Iterating</h1>
+
+<p>Iterating through containers was also inconvenient. Iterating the simple <em>vector v</em> above:</p>
+
+<p>[cpp]
+for (vector<string>::iterator i = v.begin();</p>
+
+<pre><code> i != v.end(); i++)
+cout &lt;&lt; i &lt;&lt; endl;[/cpp]
+</code></pre>
+
+<p>Modern languages have long had some <em>foreach</em> equivalent that allowed us easier ways to iterate through these structures without having to explicitly worry about iterators types. C++11 is finally catching up:</p>
+
+<p>[cpp]
+for (string s : v)</p>
+
+<pre><code>cout &lt;&lt; s &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>As well, C++11 brings in a new keyword, <em>auto</em>, that will evaluate to a type in compile-type. So instead of</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++) {
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>we can now write</p>
+
+<p>[cpp]
+for (auto i = m.begin(); i != m.end(); i++) {
+[/cpp]</p>
+
+<p>and <em>auto</em> will evaluate to <em>map&lt;string, vector<string>>::iterator</em>.</p>
+
+<p>Combining these changes, we move from the horrendous</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++)
+for (vector&lt;string&gt;::iterator j = i-&gt;second.begin();
+     j != i-&gt;second.end(); j++)
+    cout &lt;&lt; i-&gt;first &lt;&lt; ': ' &lt;&lt; *j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>to the much simpler</p>
+
+<p>[cpp]
+for (auto i : m)</p>
+
+<pre><code>for (auto j : i.second)
+    cout &lt;&lt; i.first &lt;&lt; ': ' &lt;&lt; j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Not bad.</p>
+
+<p>C++11 support varies a lot from compiler to compiler, but all of the changes above are already supported in the latest versions of GCC, LLVM, and MSVC compilers.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FOR is evil or something]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/19/for-is-evil-or-something/"/>
+    <updated>2012-11-19T10:31:16-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/19/for-is-evil-or-something</id>
+    <content type="html"><![CDATA[<blockquote><p>Have you ever wondered how FORs impact your code? How they are limiting your design and more important how they are transforming your code into an amount of lines without any human meaning?</p></blockquote>
+
+<p>How can you not want to read an article that starts like that? I had to steal the intro from the original. Seriously, I have used FOR since I learned BASIC back in the day. I never thought about how it was limiting my design. I. Must. Learn. How.</p>
+
+<p>The article I am referring to is, <a href="http://www.lordofthejars.com/2012/10/avoiding-fors-anti-if-campaign.html">Avoiding FORs - Anti-If Campaign</a>. Eager learner I, I could not not read it.</p>
+
+<p>After the resplendent intro, <em>Avoiding FOR</em> goes on to show &#8220;how to transform a simple example of a for […], to something more readable and well designed.&#8221;</p>
+
+<p>It takes this unreadable piece of code — that I now recognize as unreadable:</p>
+
+<p>[java]
+public class Department {</p>
+
+<pre><code>private List resources = new ArrayList();
+
+public void addResource(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void printSlips() {
+
+    for (Resource resource : resources) {
+        if(resource.lastContract().deadline().after(new Date())) {
+
+            System.out.println(resource.name());
+            System.out.println(resource.salary());
+        }
+    }
+}
+</code></pre>
+
+<p>}[/java]</p>
+
+<p>My eyes hurt already. Thankfully the author transforms the aberration above into this clean, much more readable snippet:</p>
+
+<p>[java]public class ResourceOrderedCollection {</p>
+
+<pre><code>    private Collection&lt;Resource&gt; resources = new ArrayList&lt;Resource&gt;();
+
+
+
+public ResourceOrderedCollection() {
+    super();
+}
+
+public ResourceOrderedCollection(Collection&lt;Resource&gt; resources) {
+    this.resources = resources;
+}
+
+public void add(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void forEachDo(Block block) {
+    Iterator&lt;Resource&gt; iterator = resources.iterator();
+
+    while(iterator.hasNext()) {
+        block.evaluate(iterator.next());
+    }
+
+}
+
+public ResourceOrderedCollection select(Predicate predicate) {
+
+    ResourceOrderedCollection resourceOrderedCollection = new ResourceOrderedCollection();
+
+    Iterator&lt;Resource&gt; iterator = resources.iterator();
+
+    while(iterator.hasNext()) {
+        Resource resource = iterator.next();
+        if(predicate.is(resource)) {
+            resourceOrderedCollection.add(resource);
+        }
+    }
+
+    return resourceOrderedCollection;
+}
+</code></pre>
+
+<p>}</p>
+
+<p>public class Department {</p>
+
+<pre><code>private List&lt;Resource&gt; resources = new ArrayList&lt;Resource&gt;();
+
+public void addResource(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void printSlips() {
+    new ResourceOrderedCollection(this.resources).select(new InForcePredicate()).forEachDo(new PrintSlip());
+}
+</code></pre>
+
+<p>}[/java]</p>
+
+<p>Wait, what? Is this an Onion article?</p>
+
+<p>Snarky Mode Off.</p>
+
+<p>I understand what the author wanted to do, but really, the example used is so off the left field that it&#8217;s not even funny.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Missus Lady Wife's bday]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/11/2114/"/>
+    <updated>2012-11-11T12:07:51-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/11/2114</id>
+    <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg" alt="20121111-121454.jpg" /></a></p>
+
+<p>Wife&#8217;s birthday translates into dad-daughter&#8217;s day out as my wife gets a day-off from us :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[All those black people...]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/10/all-those-black-people/"/>
+    <updated>2012-11-10T18:39:16-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/10/all-those-black-people</id>
+    <content type="html"><![CDATA[<p>I had a talk with my landlady.</p>
+
+<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24-580x368.jpg" alt="Prostest against the Argentine government in Buenos Aires" /></a></p>
+
+<p>There had been another set of monster protests against the government in Argentina and she was talking about the situation in her country.</p>
+
+<p>As usual, she scolded me for leaving Brazil and coming here.</p>
+
+<p>As usual, I tried to stay out of it saying I don&#8217;t really follow the news.</p>
+
+<p>&#8220;And also,&#8221; I explained, &#8220;Brazil isn&#8217;t that much better, you know?&#8221;</p>
+
+<p>&#8220;Ah, but you are so much more organized,&#8221; she continued.</p>
+
+<p>&#8220;We were lucky with the last few presidencies,&#8221; I conceded.</p>
+
+<p>&#8220;That wasn&#8217;t luck,&#8221; she educated me. &#8220;You know how to vote over there.&#8221;</p>
+
+<p><em>LOL</em></p>
+
+<p>&#8220;We have too much corruption,&#8221; I continued. &#8220;And crime. We&#8217;ve got too much violence!&#8221;</p>
+
+<p>And then she said something I heard before in Argentina.</p>
+
+<p>&#8220;Ah, yes,&#8221; she permitted sympathetically. &#8220;You have all those black people…&#8221;</p>
+
+<p>She must have seen my face because she said &#8220;well, I don&#8217;t know, of course.&#8221;</p>
+
+<p>&#8220;That&#8217;s not the problem, you know,&#8221; I said. &#8220;When I was kidnapped, none of the men were blacks. That really isn&#8217;t how it works over there.&#8221;</p>
+
+<p>And we changed the subject.</p>
+
+<p>That&#8217;s not the first time I hear from someone here the same argument that Brazil&#8217;s problems are somehow a result of &#8220;those black people&#8221; but it stills throws me off, every time.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Quote of the Day]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/10/quote-of-the-day/"/>
+    <updated>2012-11-10T08:57:25-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/10/quote-of-the-day</id>
+    <content type="html"><![CDATA[<p>An idiot with a PhD is still an idiot</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rolling out your own Fusion Drive with the recovery partition]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
+    <updated>2012-11-09T08:18:34-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
+    <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM.png"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM-580x493.png" alt="disk utility showing Fusion Drive" /></a></p>
+
+<p>My Macbook Pro has two disks, an HDD and an SSD, each of 240GB or so. With the details of Apple&#8217;s Fusion Drive coming out I decided to do what any reasonable geek would do to their production computer: I&#8217;ve decided to implement my own untested, highly experimental and barely understood Fusion Drive.</p>
+
+<p>One of the things that initially put me off doing this was that according to the 3,471,918 tutorials that have popped up in the last 10 minutes would cause me to lose my Mountain Lion recovery partition because these partitions are not supported in a Fusion drive. Turns out this is not exactly true.</p>
+
+<p>Fusion Drive is just a marketing term for a what essentially is a CoreStorage logical volume spanning an SSD <em>and</em> an HDD. And although you cannot have the recovery partition inside a CS logical volume, it doesn&#8217;t mean you can&#8217;t have <em>both</em> a recovery partition <em>and</em> a Fusion Drive at the same time. It&#8217;s all in the <a href="http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man8/diskutil.8">diskutil man page</a>, by the way:</p>
+
+<blockquote><p>Create a CoreStorage logical volume group. The disks specified will become the (initial) set of physical volumes; more than one may be specified. <strong>You can specify partitions</strong> (which will be re-typed to be Apple_CoreStorage) or whole-disks (which will be partitioned as GPT and will contain an Apple_CoreStorage partition). The resulting LVG UUID can then be used with createVolume below. All existing data on the drive(s) will be lost. Ownership of the affected disk is required.</p></blockquote>
+
+<p>What matters is what&#8217;s in bold above: we&#8217;re not limited to using whole disks. So here&#8217;s what I did.</p>
+
+<p>I rebooted my system and held the <strong>option</strong> key so I could select my recovery partition as the start up disk. Once the OSX recovery started up, I launched a terminal to do the dirty work.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>From this I noted two things: (a) the main SSD partition (the one holding my OSX and that sited by my recovery partition) and (b) the disk name of my HDD. They were respectively <em>disk0s2</em> and <em>disk1</em> in my case, but they&#8217;ll very likely be different for you. Then the magic begins.</p>
+
+<pre><code>&lt;code&gt;diskutil cs create "Fusion Drive" disk0s2 disk1
+&lt;/code&gt;
+</code></pre>
+
+<p>(For crying out loud, you need to change disk0s2 and disk1 for whatever makes sense on your system!)</p>
+
+<p>That created the coreStorage logical volume. Then I listed it all again to note what the new logical volume UUID was.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>The UUID is a long number identifier like F47AC10B-58CC-4372-A567-0E02B2C3D479. You&#8217;ll need that one next to actually create the volume where you&#8217;ll be installing your system.</p>
+
+<pre><code>&lt;code&gt;diskutil coreStorage createVolume F47AC10B-58CC-4372-A567-0E02B2C3D479 jhfs+ "Macbook FD" 100%
+&lt;/code&gt;
+</code></pre>
+
+<p>The command above will create a volume named &#8220;Macbook FD&#8221; using 100% of the logical volume we had created earlier.</p>
+
+<p>I then restored my Time Machine backup and that&#8217;s it.</p>
+
+<p><strong>Update:</strong> Note that after this process, the Recovery partition will still be present and things that require it (such as Find My Mac) will work fine. Some people correctly pointed out, however, that you can no longer boot from the recovery partition by using the menu from holding ⌥ (<strong>option)</strong> during boot. I&#8217;m not sure why that is, but fear not, it will still boot normally from pressing <strong>⌘R (command + R)</strong>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Not a-ok]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok/"/>
+    <updated>2012-11-08T14:48:39-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok</id>
+    <content type="html"><![CDATA[<p>I have a little confession to make: our family is going through a rough patch. Both my wife and I are having problems. No, not between us. And both are experiencing very different sorts of problems. But the happening-at-the-same-time complicates the one-supports-the-other thing.</p>
+
+<p>And to compound to that, I have been sick.</p>
+
+<p>As I sat in the waiting room at the hospital the other day, waiting for some exams, I felt like this is one of the worst times of my life. I feel tired, unmotivated, unappreciated, and generally unhappy. And fucking hopeless. That&#8217;s the worst part, I suppose.</p>
+
+<p>I also have been distancing myself from friends lately. Ostensibly to avoid distractions in a time where I am having to give all and a bit more to a project I do not believe in. Truth be told, I just don&#8217;t feel like small talk but I also don&#8217;t want bring others down to my Dark Hole of Misery. And so I&#8217;m trying to keep some distance.</p>
+
+<p>I feel lost. I look at my friends and how they all seem to have it all figured out already. I&#8217;m still trying to figure out who the fuck I am. I was so sure when I was younger. I was so fucking <em>good</em> at what I did. Now? I just don&#8217;t know anymore. I feel unhappy.</p>
+
+<p>I know some people who will be So. Fucking. Happy. reading the paragraph above. This one&#8217;s for free for you guys.</p>
+
+<p>But not all is bad news. I actually got some good news last night. I can&#8217;t tell the details although I know some of you know exactly what this is about. Anyway, I now have a set date for it and it&#8217;s in under six months from now.</p>
+
+<p>I&#8217;m actually confident that this will make it all better somehow. Just have to wait.</p>
+
+<p>Sorry for the downer, but I felt like writing something.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Holy sh*t it's hot!]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/08/holy-sht-its-hot/"/>
+    <updated>2012-11-08T12:32:37-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/08/holy-sht-its-hot</id>
+    <content type="html"><![CDATA[<p>When I arrived in Cordoba, Argentina, in 2009, it snowed. Not white-shit snow, but just a tiny bit to tell me “Hey man, see how it’s not too hot in here? It’s going to be alright” I was pretty happy about that.</p>
+
+<p>Temperatures stayed very mild through August and September and I was beginning to like the place. I went to Brazil to bring my wife and daughter who had stayed behind until I got settled here. I told my wife that the climate was mild and she was glad. And then we came back.</p>
+
+<p>The weekend my wife and daughter arrived in Cordoba, Argentina, the temperature got to 43°C. An oppressive heat. The following Monday I went to work.</p>
+
+<p>“Good morning,” I said to the receptionist. “So hot!!”</p>
+
+<p>“Yes!” She replied, followed by the first time I heard something I would hear many, many times again every time I mentioned the heat. “But for you this should be nothing, right? You are used to much worse in Brazil”</p>
+
+<p><em>Are you high?</em> I thought. <em>No! No I’m not used to living in Hades!</em></p>
+
+<p>“Er&#8230; not really, I never experienced this kind of heat before” and then added the question I was really looking forward to ask. “But&#8230; this isn’t normal here, is it?”</p>
+
+<p>She didn’t seem to think twice before shattering my hopes, “Yep, pretty normal.” Turns out she wasn’t lying either. Since then, I’ve seen several days over 40°C.</p>
+
+<p>See, this is what the Wikipedia says about the place I grew up in:</p>
+
+<blockquote><p>  Under the Köppen climate classification, Caxias do Sul features a subtropical highland climate. The average annual temperature is 16°C (60.8°F). In July, the coldest month, the average high temperature is 17°C (62.6°F) and the average low is 8°C (46.4°F); in January, the hottest, they&#8217;re 26°C (78.8°F) and 16°C (60.8°F), respectively. Frosts are common in the winter and snow can occur, but it is less common.</p></blockquote>
+
+<p>That sounds about right to me. I usually start complaining about the heat when temperatures go above 22°C or so. When I was a kid, I used to say my favourite temperature was 16°C. <em>Not hot, not cold, just perfect.</em></p>
+
+<p>Bottom line is, no, I am not used to these temperatures. But for some reason, every time I mention the heat to someone in Cordoba, they invariably answer me with &#8220;but that&#8217;s nothing for you, right? You&#8217;re used to so much more heat in Brazil!&#8221;</p>
+
+<p>I&#8217;m sure there are places in Brazil where 40°C weather is normal, but no, I have never lived in a place like that. The hottest place I&#8217;ve lived was Sao Paulo where, I read just last week, they experienced the third highest recorded temperature ever of 36°C. I then checked my phone&#8217;s weather app and three of the next five days were going to be hotter then 36°C.</p>
+
+<p>In the eternal words of the lovely Lisa Leblanc, <em>osti qu&#8217;y fait chaud!</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How I accidentally because a domain squatter]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter/"/>
+    <updated>2012-11-01T21:39:23-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter</id>
+    <content type="html"><![CDATA[<p>A couple of days ago, I was listening to one of my favourite podcasts, <a href="http://5by5.tv/frequency">The Frequency</a>, when one of the hosts, Dan Benjamin, thought of a cool domain name, <a href="http://ohitson.com">ohitson.com</a> and checked to see if it was available. Turns out it was and he said he was registering right there and then. Now, two things: (a) I was listening to a recorded podcast, not live; and (b) I thought to myself, damn it! it <em>is</em> a cool domain name.</p>
+
+<p>The next day, I launched <a href="http://hover.com">Hover</a> and checked the domain name and to my surprise it was available. I simply thought either Dan had given up on it or, most likely, I had misunderstood the domain name he was talking about and fortunately that had made me thing of <em>this</em> cool domain name. I even checked Google to make sure &#8220;Oh, it&#8217;s on&#8221; was really written like that :P</p>
+
+<p>Obviously I went ahead and registered the name. After that, I listed to that day&#8217;s The Frequency and heard Dan tell Haddie something to the effect of &#8220;oh, I forgot to register that domain yesterday!&#8221; That&#8217;s when I thought, oh-oh, maybe I <em>had</em> heard the correct domain name.</p>
+
+<p>As it turns out, I was just listening to today&#8217;s episode and guess what? Dan mentions that someone registered it due to his mention on the show (which is technically true.)</p>
+
+<p>But I am a nice guy. I offered to transfer the domain to Dan for free just a few minutes ago. Not sure he&#8217;ll see my posts to app.net or Twitter. If not, I&#8217;ll try again a few times. I really don&#8217;t have any intention to keep this domain name as long as he still wants it. Sounds unfair.</p>
+
+<p><strong>Update 7 Nov 2012:</strong> can you believe he actually accepted my offer? What a douche! Just kidding, it was the Fair Thing to Do™ and I&#8217;m happy to say the domain has been transferred to His Benjaminship already.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Disney taking over Star Wars is a good thing]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing/"/>
+    <updated>2012-11-01T20:59:38-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing</id>
+    <content type="html"><![CDATA[<p><img src="http://ohitson.com/wp-content/uploads/2012/11/527279_436801283051213_1826357756_n-580x500.jpg" alt="" /></p>
+
+<p>According to everyone on the Internet, George Lucas is selling Lucasfilm and other businesses—including the revered Industrial Light &amp; Magic—to the evil mouse that is The Walt Disney Company.</p>
+
+<p>But what is really setting the Internet on fire is a comment from the <a href="http://thewaltdisneycompany.com/disney-news/press-releases/2012/10/disney-acquire-lucasfilm-ltd">press release</a>:</p>
+
+<blockquote><p>  In 2015, we&#8217;re planning to release Star Wars Episode 7 – the first feature film under the &#8220;Disney-Lucasfilm&#8221; brand. That will be followed by Episodes 8 and 9 – and our long term plan is to release a new Star Wars feature film every two to three years.</p></blockquote>
+
+<p>And so I decided to chime in to say why I think this is <em>awesome</em> news. To understand why, you need to understand just a little bit of the history of Star Wars.</p>
+
+<p>Back in the early 1970s, George Lucas decided to create a science-fiction epic. He had touched the genre with THX1138 in 1971, but now he wanted something more upbeat. He wanted <a href="http://www.youtube.com/watch?v=gNIVpMXHqlk">Flash Gordon</a>.</p>
+
+<p>George Lucas sat and tried to write a screenplay but was ultimately unsuccessful, settling for an outline instead. And it ended up a copy of Akira Kurozawa’s <em>The Hidden Fortress</em>, as can be seen by comparing both the film’s and Lucas’ synopses (from <a href="http://hem.bredband.net/wookiee/development/">The development of Star Wars</a>):</p>
+
+<blockquote><p>  <em>The Star Wars:</em></p></blockquote>
+
+<p>  “It is the thirty-third century, a period of civil wars in the galaxy. A rebel princess, with her family, her retainers, and the clan treasure, is being pursued. If they can cross territory controlled by the Empire and reach a friendly planet, they will be saved. The Sovereign knows this, and posts a reward for the capture of the princess.”8</p>
+
+<p>  <em>The Hidden Fortress:</em></p>
+
+<p>  “It is the sixteenth century, a period of civil wars. A princess, with her family, her retainers, and the clan treasure is being pursued. If they can cross enemy territory and reach a friendly province they will be saved. The enemy knows this and posts a reward for the capture of the princess.</p>
+
+<p>The screenplay eventually evolved into the very different story we are all familiar with. His dialogue was still terrible even after he got some help. It was so bad, in fact, that actor Harrison Ford famously threatened to tie Lucas down and force him to read his own dialogue. But the movie worked. Yes, it was cheesy and yes, there are some pretty serious plot holes, but overall it was a decent movie, innovative enough at the time to draw huge crowds into the movie theaters.</p>
+
+<p>But compared with <em>The Empire Strikes Back</em> and <em>The Return of the Jedi</em>, it is bad. The reason is that George gave up writing screenplays and let others do that job, resulting in the <em>great</em> and dark <em>The Empire&#8230;</em>. He came back to co-write <em>The Return&#8230;</em> and we got the Ewoks. He would later write <em>Phantom Menace</em> all by himself. and I suppose this speaks by itself. Most of the other films we associate with Lucas were written—and often directed—by someone else. Think <em>Indiana Jones</em>.</p>
+
+<p>My point here is, George Lucas cannot write to save his life. <em>He. Is. Terrible.</em></p>
+
+<p>Back to the press release from Disney, here’s Lucas himself:</p>
+
+<blockquote><p>  It&#8217;s now time for me to pass Star Wars on to a new generation of filmmakers. I&#8217;ve always believed that Star Wars could live beyond me, and I thought it was important to set up the transition during my lifetime.</p></blockquote>
+
+<p><em>Yes!</em> He is right. It is high time he passed Star Wars to someone more competent. Especially after he managed to create an absolutely <em>horrible</em> prequel trilogy <em>and</em> mess with the originals at the same time. <em>Solo shot first, not Greedo!</em></p>
+
+<p>So yes, passing the torch is a good thing. Sure, Disney is a soulless, conservative corporation known for lobying Mickey Mouse’s copyright ownership rights into infinity. Also, Pooh, a <em>public domain</em> charater taken over. And yes, Disney gave us <em>John Carter</em>. But they also own Pixar, so I give them a little leeway here.</p>
+
+<p>The fact is that whoever Disney gives control of Star Wars to, he or she is unlikely to do worse than the man who brought us the Ewoks, Jar-Jar Binks, and the epic of zoophilia: <a href="http://www.youtube.com/watch?v=u6hDf5cCUJw">Howard the Duck</a>.</p>
+
+<p>Unless they cast Justin Bieber as Luke. Oh boy&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Don’t Call The New Microsoft Surface RT A Tablet, This Is A PC]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc/"/>
+    <updated>2012-10-24T17:07:51-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc</id>
+    <content type="html"><![CDATA[<p><a href="http://techcrunch.com/2012/10/23/microsoft-surface-rt-review/">Don’t Call The New Microsoft Surface RT A Tablet, This Is A PC</a></p>
+
+<blockquote><p>  The lack of apps is one of the Surface’s main downfalls.</p></blockquote>
+
+<p>  The sad state of Windows RT’s application store is eerily similar to that of Windows Phone. Launched nearly two years ago, the application selection on Windows Phone still pales in comparison to that of Android or iOS. Microsoft has spent two years attempting to get developers on-board its smartphone platform. Will developers ignore Windows RT as well? No one knows and that’s the trick.</p>
+
+<p>And that is the trick, isn&#8217;t it? Why should anyone invest in what essentially is at least $600 (all reviews agree you can&#8217;t use this thing without the Touch Cover) for something that runs an operating system that <em>no one</em> develops for? Especially when you can get better options with Android or iOS for the same or less?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Off-the-something drama]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama/"/>
+    <updated>2012-10-22T15:06:50-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama</id>
+    <content type="html"><![CDATA[<p>Right in the very first issue of <a href="http://the-magazine.org">The Magazine</a>, I found an interesting article called <a href="http://the-magazine.org/1/baseball-misfits">Baseball Misfits</a> by Jason Snell. In it, Jason talks about the great divide that seems to exist between the geeks who love sports and those who despise them.</p>
+
+<p>I am no stranger to that. I am one of the geeks who dig sports, I know both kinds and, exactly as mentioned in Jason&#8217;s article, I have experienced the <em>wrath</em> from the geeks who don&#8217;t dig sports when one who does happens to mention the subject.</p>
+
+<p>Snell talked about why he loves sports so I thought I&#8217;d do the same. To me, sports are just another form of entertainment, like watching a movie or a TV show. One thing sports give me that TV shows usually don&#8217;t is the thrill of not knowing what is going to happen. But there&#8217;s also the same cheap thrills as in TV shows with overarching stories: the off-the-court/ice/field drama. I tend to follow sports in which the off-the-something drama is strongest. I love great rivalries, I love to know player X has this or that story that can have closure in tonight&#8217;s game. It&#8217;s all fun to me.</p>
+
+<p>I think that&#8217;s one of the reasons I never fell in love with Soccer. I never felt that the off-the-field drama was explored enough. It may be a cultural thing. Who knows?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The day a videogame changed my life]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/10/04/the-saturday-a-videogame-changed-my-life/"/>
+    <updated>2012-10-04T12:32:42-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/10/04/the-saturday-a-videogame-changed-my-life</id>
+    <content type="html"><![CDATA[<p>Last night, as I tried getting my three year-old to sleep so I could play my brand-new copy of <a href="http://www.easports.com/nhl">NHL 13</a>, I had an epiphany of sorts. It dawned on me how much videogames influenced my real-life pleasures. And the story actually started a long time ago.</p>
+
+<p><img src="http://cd.textfiles.com/gifgalaxy/PROGRAMS/VGACOPY.GIF" alt="http://cd.textfiles.com/gifgalaxy/PROGRAMS/VGACOPY.GIF" />The story begins in a rather pleasant Saturday afternoon in late 1993. We went into a shoddy building, walked up the stairs to the first floor and found this rather unassuming office at the end of the hall. We skimmed over a thick catalog of game titles and started picking a few we wanted to try. They were cheap, pirated games. After selecting the titles, the guy there noted them down and asked us to wait. In the back, two guys got some floppy disks and started copying the games for us with <a href="http://www.moenk.de/pages/vgacopy.html">VGAcopy</a>. Nice!</p>
+
+<p>Of the games we bought, only one I can still remember: <a href="http://www.nhl94.com/">NHL Hockey</a>. To that day, I had only a general idea of what hockey was: Soccer on the ice. We picked it simply because the clerk there told us it was good.</p>
+
+<p><img src="http://robteix.com/wp-content/uploads/2012/10/538253-nhl-hockey-dos-screenshot-title-screens.png" alt="" />We went home that day and probably tried some of the other, now-forgotten games, but then we installed NHL Hockey from the floppies to MS-DOS. We were both hooked instantly! The game had an arena atmosphere that later version never quite managed to reproduce. We did not know the many rules of hockey, we learned as we played. I remember vividly as my friend pumped up the volume on the PC when the game would play an 8-bit version of &#8220;We will rock you&#8221; while two cartoon hands clapped on the virtual jumbotron.</p>
+
+<p><img src="http://robteix.com/wp-content/uploads/2012/10/nhl96.jpg" alt="http://www.igcent.com/images/stories/nhl96.jpg" />We played that game throughout that night and into Sunday. It was fast. It was fun. We were hooked. NHL 96 was the first game I ever legally bought. And I&#8217;ve bought almost every version since then.</p>
+
+<p>Back to how it influenced my real-life, playing the game got me into Hockey as a sport. A Brazilian hooked on Hockey? Not supposed to happen, but one likes what one likes. It also indirectly started my love affair with Canada, but that&#8217;s a different story. Following Hockey was not easy until I found a radio that streamed games and later the League started offering live vide streaming for which I have been gladly paying an exorbitant amount of money for half a decade or so. I&#8217;ve experienced a similar effect thanks to the <a href="http://www.easports.com/madden-nfl">Madden</a> and <a href="http://en.wikipedia.org/wiki/NBA_Live_series">NBA Live</a> series, but NHL Hockey will always be a special case for me.</p>
+
+<p>I realized that thru hockey I&#8217;ve made friends, some of whom are <em>real</em> good friends. And all of this started because a couple of decades ago we got some pirated games in a Saturday afternoon.</p>
+
+<p>Want to make a comment or suggestion? Do you feel like you need to correct me for not fitting the Standard Brazilian Specification? Feel free to talk to (or scream at) me, I’m <a href="https://alpha.app.net/robteix">@robteix on App.net</a> and <a href="http://twitter.com/robteix">also on Twitter</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google App Engine is making me mad]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
+    <updated>2012-08-20T22:14:14-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
+    <content type="html"><![CDATA[<p>An user found a bug in <a href="http://unico.robteix.com/">Unico</a> and I hunt it down: session data for some users simply fails to load.</p>
+
+<p>While checking appengine&#8217;s dashboard for logs and whatnot I came across a <strong>Server Error</strong>, nothing else, while trying to check the data store viewer.</p>
+
+<p>I&#8217;ve searched a bit and apparently this is caused by &#8220;bad entities&#8221; which cause the google viewer to break. The solution would be to download all data, find the bad entity, fix it and upload the data again. Except this isn&#8217;t supported for Go applications.</p>
+
+<p>Seriously considering moving Unico to AWS, just so I have more control over it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[In which Rob gets app.net]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net/"/>
+    <updated>2012-08-19T20:48:24-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net</id>
+    <content type="html"><![CDATA[<p>I got myself an app.net account (<a href="https://alpha.app.net/robteix">@robteix</a>) a couple of days ago. [Cue the <a href="http://ihave50dollars.com/">ihave50dollars.com</a> jokes.]  Still haven&#8217;t really used it a lot but am starting to enjoy the discussions about the API development.</p>
+
+<p>I joined mostly to support the idea—which I must admit is pretty insane. But what would the world be without insane ideas? ADN will <strong>never</strong> be Twitter or Facebook, but maybe it doesn&#8217;t need to be. Maybe it really only needs to be a same environment for people like me. I like it.</p>
+
+<p>They do need a better name though.</p>
+
+<ul>
+<li>Posted using BlogPress from my iPhone</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[John Scalzi's Redshirts]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts/"/>
+    <updated>2012-07-15T10:59:28-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts</id>
+    <content type="html"><![CDATA[<p>Just finished reading John Scalzi&#8217;s <a href="http://www.amazon.com/gp/product/B0079XPUOW/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0079XPUOW">Redshirts</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=B0079XPUOW" alt="" />. It&#8217;s funny, sometimes silly, but it&#8217;s also a page turner. I read it in a few hours, just could not put it down. And Scalzi manages to make something that looks like it&#8217;s obvious and then give it a twist and another and then another until you go, <em>oh that&#8217;s the thing&#8230;</em> It is definitely not hard scifi! I&#8217;d describe it more as a satyrical work making fun—albeit in a positive way!—of scifi. I loved it.</p>
+
+<p>Oh, and it&#8217;s totally <em>meta</em>!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Could something like “Apollo 18” really have existed?]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed/"/>
+    <updated>2011-09-17T08:01:45-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed</id>
+    <content type="html"><![CDATA[<p>Conspiracy theories and hoaxes abound when it comes to mankind’s arrival at our moon (or the non-arrival.) One such hoaxes is the <strong>Apollo 20</strong>, a purported top secret mission that back to the moon back in 1976 to fetch some aliens living there. The secret would have been revealed by no other than William Rutledge, who claims to have been an astronaut in that mission and who nowadays lives and writes out of Rwanda.</p>
+
+<p>Arguably this theory was never as popular as its always popular theory that NASA spent billions of dollars to fabricate the moon landings but somehow forgot to paint stars in the ceiling.</p>
+
+<p>Now however a film promises to inspire the masses who believe NASA has been sending secret missions to Luna. The movie is <a href="http://apollo18movie.net/">Apollo 18</a>.
+<a href="http://robteix.com/wp-content/uploads/2011/09/apollo-18-movie1.jpg"><img src="http://robteix.com/wp-content/uploads/2011/09/apollo-18-movie_thumb1.jpg" alt="apollo-18-movie" /></a>
+(Promotional picture)</p>
+
+<p>The movie’s premise is that after the Apollo program was cancelled, NASA would have flown another mission and found, of course, aliens and that’s why we’ve never been back to the Moon. It’s one more movie in the style of <a href="http://www.cloverfieldmovie.com/">Cloverfield</a>, where the audience is expected to pretend to be watching to real top-secret leaked footage.</p>
+
+<p>Domension Films’ big cahuna, Bob Weinstein, stated,</p>
+
+<blockquote><p>We didn’t shoot anything, we found it. Found, baby!</p></blockquote>
+
+<p>The movie is of course a work of fiction. That’s not hard to figure out, even if you could not look up the actors who were in the movie. For instance, the astronauts of Apollo 18 in the movie are supposed to be Nathan Walker, John Grey e Benjamin Anderson, but the astronaut corps roster was very well known and none of these gentlemen were part of it. Although none of the crews for the cancelled flights (Apollos 18, 19 and 20) were never officially named – what would be the point? –, one can infer from the assignment rotation system NASA used that <a href="http://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_18_20.html">the Apollo 18 crew would likely be</a>:</p>
+
+<ul>
+<li><p>Richard Gordon</p></li>
+<li><p>Vance Brand</p></li>
+<li><p>Harrison Schmitt</p></li>
+</ul>
+
+
+<p>Except Schmitt was activated to the Apollo 17 main crew when it became clear that it would be the last chance for a scientist to step on the moon. Somebody – Joe Engle, perhaps – would have to replace him on Apollo 18.</p>
+
+<p>But the hoax is not really about the movie itself, but about the general idea that NASA ran more missions than we know about. So, could something like Apollo 18 really have existed? Could NASA have performed this secretly?</p>
+
+<p>It is unfortunately impossible to prove a negative, but at least we can think of how likely would that be. I can’t really see how such a thing could have been done. To begin with, there’s this:
+<a href="http://robteix.com/wp-content/uploads/2011/09/flickr-3743794970-original1.jpg"><img src="http://robteix.com/wp-content/uploads/2011/09/flickr-3743794970-original_thumb1.jpg" alt="flickr-3743794970-original" /></a>
+(Image credit: <strong><a href="http://www.flickr.com/photos/vanderkroew/">Euclid vanderKroew</a>)</strong></p>
+
+<p>You see, the <strong>Saturn V</strong> was big. <em>Really big</em>. Not easy to hide, then. It seems highly unlikely that NASA could have launched a Saturn V out of Cape Canaveral without it being seen.</p>
+
+<p>I also saw this argument on some forum that NASA would have prefferred a night launch to improve the chances to keep it a secret, but the thing is, that big dumb rocket is not very subtle either.
+<a href="http://robteix.com/wp-content/uploads/2011/09/3743667306_c2b398ee5b_z1.jpg"><img src="http://robteix.com/wp-content/uploads/2011/09/3743667306_c2b398ee5b_z_thumb1.jpg" alt="3743667306_c2b398ee5b_z" /></a>
+(Image credit: <a href="http://www.flickr.com/photos/vanderkroew/">Euclid vanderKroew</a>)</p>
+
+<p>And then if we discard a launch in the continental US, it would have to be from either a platform at sea or from somewhere in North Africa. Problem here is that the logistics of accomplishing such an feat – let alone in absolute secrecy – are just fenomenal.</p>
+
+<p>As well, the Saturn V was a very public project. All its parts were very well tracked and it’s possible to know where most parts are even today. And some of those parts are <em>huge</em>, not the kind that you can stow in the back of a black unmarked van.</p>
+
+<p>And then there are other factors, of course. We’re used to the image of three astronauts sitting on top of a rocket and a mission control room with, say, 20 or 30 people.
+<a href="http://robteix.com/wp-content/uploads/2011/09/2985911950_0f3a207a10_z1.jpg"><img src="http://robteix.com/wp-content/uploads/2011/09/2985911950_0f3a207a10_z_thumb1.jpg" alt="2985911950_0f3a207a10_z" /></a>
+(Image credit: <a href="http://www.flickr.com/photos/doctorow/">Cory Doctorow</a>.)</p>
+
+<p><a href="http://www.amazon.com/gp/product/0670814466/ref=as_li_ss_il?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=217145&amp;creative=399369&amp;creativeASIN=0670814466"><img src="http://ws.assoc-amazon.com/widgets/q?_encoding=UTF8&amp;Format=_SL160_&amp;ASIN=0670814466&amp;MarketPlace=US&amp;ID=AsinImage&amp;WS=1&amp;tag=itsuptoyoma-20&amp;ServiceVersion=20070822" alt="" /></a>But an Apollo flight involved a lot more people than that. In <a href="http://www.amazon.com/gp/product/0670814466/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=217145&amp;creative=399369&amp;creativeASIN=0670814466">A Man on the Moon: The Voyages of the Apollo Astronauts</a><img src="http://www.assoc-amazon.com/e/ir?t=&amp;l=as2&amp;o=1&amp;a=0670814466&amp;camp=217145&amp;creative=399369" alt="" /> (Awesome gift! Thank you Stulzer!), Andrew Chalkin estimates the figure at 500,000 workers altogether. <a href="http://www.amazon.com/gp/product/0618507574/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=217145&amp;creative=399369&amp;creativeASIN=0618507574">Others state the number is more like 400,000 people</a>.</p>
+
+<p>Regardless of the actual figure, it should be clear that such a mission would require the collaboration of <strong>hundreds of thousands of people</strong> all around the world (more on that below.)</p>
+
+<p>And contrary to what some might want to believe, the Apollo program was not something entirely done behind closely guarded doors at some Air Force base. It involved a <em>lot</em> of private contractors. GE, IBM, Boeing, GM… the list of contractors can occupy several pages. To assume that all the employees involved who have since likely changed jobs multiple times and retired would be able to keep this a secret for four decades really stretches one’s imagination.
+<a href="http://robteix.com/wp-content/uploads/2011/09/figc-31.jpg"><img src="http://robteix.com/wp-content/uploads/2011/09/figc-3_thumb1.jpg" alt="figc-3" /></a>
+(Image credit: <a href="http://robteix.com/wp-content/uploads/2011/09/figc-32.jpg">history.nasa.gov</a>)</p>
+
+<p>As big as the contractors’, the list of academic institutions involved in the program is amazing. Virtually every major US university and institute was included, but the list also included institutions form Australia, Belgium, Canada, England, Finland, Germany, Japan, Scotland and Switzerland. And that takes me to what is, to me, the most important thing to consider.</p>
+
+<p>In order to fly to the Moon, you don’t just point the rocket, turn on the ignition and wait for it to reach its destination. It’s a complex voyage with huge preparations, calculations and adjustments. Orbital mechanics was one of the most interesting things I’ve even studied. But I digress.</p>
+
+<p>An interesting challenge for NASA was to be able to communicate and track the ship all the way to the Moon and back.
+<a href="http://robteix.com/wp-content/uploads/2011/09/flight-profile-p171.png"><img src="http://robteix.com/wp-content/uploads/2011/09/flight-profile-p17_thumb1.png" alt="flight-profile-p17" /></a>
+(Escaneado pelo autor. NASA Apollo 11 Press Kit Pg 17)</p>
+
+<p>Nowadays NASA added a whole network of satellites to assist the tast, but back when Mercury and Apollo were underway, the tracking depended on a network of tracking stations, vessels and aircraft all around the world.</p>
+
+<p>That network was the <strong>Manned Space Flight (Tracking) Network</strong>. Starting from Apollo 10, the <strong>Deep Space Network</strong> was added to assist.
+<a href="http://robteix.com/wp-content/uploads/2011/09/MSFN1.png"><img src="http://robteix.com/wp-content/uploads/2011/09/MSFN_thumb1.png" alt="MSFN" /></a>
+(Scanned by the author from NASA Apollo 11 Press Kit, Pg 172)</p>
+
+<p>It’s interesting to know that over the course of its evolution, NASA’s networks included a station in Havana, Cuba. That station was dismantled after years of service due to the Cuban revolution. As Brazilian, I also find special interest in that there was even one station along with the Brasilia International Airport, even though it was quickly disassembled and shipped to Madagascar.)</p>
+
+<p>Although those were NASA installations, they employed locals. These stations all around the world had been performing duties for years under heavy media scrutiny and to expect that all of a sudden they would be able to do it in complete secrecy is beyond reasonable belief. That and the local workers who also had to keep secrets for four decades make the most absurd hole in the hoax.</p>
+
+<p>Now remember that the Apollo missions were tracked and monitored by several governments including, of course, the Soviet Union. In <a href="http://www.amazon.com/gp/product/0312308655/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=217145&amp;creative=399369&amp;creativeASIN=0312308655">Two Sides of the Moon</a><img src="http://www.assoc-amazon.com/e/ir?t=&amp;l=as2&amp;o=1&amp;a=0312308655&amp;camp=217145&amp;creative=399369" alt="" />, Russian cosmonaut Alexei Leonov – trained to be the first man on the moon – states that all the missions were followed by the Russians in a very well equipped Space Transmissions Corps, in Moscow. Now you need the secret to be kept by the Soviets and then, after the USSR fell, by the several nations that sprouted from it.</p>
+
+<p>And the Apollo missions were tracked by amateur astronomers and radio operators all over.</p>
+
+<p>Of course that nothing here proves beyond any doubt that such secret missions were <em>impossible</em>, just unreasonable unlikely. But since you can’t prove a negative, no matter how improbale, there will still be plenty of people who believe.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My need for anonymity]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity/"/>
+    <updated>2011-08-04T16:54:38-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity</id>
+    <content type="html"><![CDATA[<p><img src="http://robteix.com/wp-content/uploads/2011/08/abhishekb-4S22MEjXDA0-hd-580x389.jpg" alt="" /></p>
+
+<p>Much has been said about the pros and cons of anonymity lately, prompted by Google+ TOS which require the use of one’s real name. No pseudonyms allowed, except apparently if you call yourself Lady Gaga or 50 Cent.</p>
+
+<p>I have seen many kinds of arguments both for and against the use of aliases and I will not repeat them here. There is however one use of aliases that I haven’t seen stated anywhere and that coincidentally affects me personally. Perhaps this is so because the problem I am about to present is not so common after all. Or perhaps it is common but people decide not to talk about it. I have no way of knowing.</p>
+
+<p>Anonymity is a vital necessity to people with a certain kind of disability, a mental disorder. I am such a person. As some of my friends know and others mock, I suffer from a mental condition called social phobia, also known as social anxiety. I take medications that help me overcome some of the most serious effects and that allow me to do things like write about it on this very blog.</p>
+
+<p>Social anxiety manifests itself in varying degrees in all kinds of social interactions. And the levels of manifestations are not what you might expect. I regularly make presentations without a second thought. I’ve given talks to hundreds of people. And yet, ordering a pizza over the phone is terrifying experience to me. No matter how many times I’ve done it, I still have to “prepare” myself every time. I rehearse, play several unlikely scenarios in my head until I finally get the courage to dial the number and talk to the person on the other side. One characteristic of this anxiety disorder is that rationally I <em>know</em> that there is nothing wrong; there is no risk in calling the pizza place. But the brain acts as if there were. But I digress.</p>
+
+<p>I love coding. I have been doing it since I was a kid and it’s the best thing I know how to do. And then there is open source. Open source projects should be the perfect venue for me to have fun. Except I am scared stiff by the idea that someone might laugh at the code. It came to a point where it is impossible for me to contribute. Then I’ve come up with a solution: an alias. For the past several years I’ve lived two different lives online: one as myself and another as an alias. I keep them strictly separate.</p>
+
+<p>Using the alias, I actively contribute to several different projects. I&#8217;ve published books. And I enjoy it all. And it would be impossible for me to do that using my own name. My pseudonym allows me to work around my condition. It allows me to <em>live</em> my life.</p>
+
+<p>I understand the rationale behind the requirement for real names on Google+. But I also know that the requirement makes it impossible for people like me to be really free on the Internet. So far, Google hasn’t figured out my alias. Hopefully it never will.</p>
+
+<p>(Photo by <a href="http://www.fotopedia.com/users/abhishekb">Abhishek Singh</a>)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Think]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/08/03/think/"/>
+    <updated>2011-08-03T11:58:57-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/08/03/think</id>
+    <content type="html"><![CDATA[<p>People&#8217;s gullibility often staggers me. A couple of days ago a photo and accompanying story started popping up everywhere.</p>
+
+<p><img src="http://robteix.com/wp-content/uploads/2011/08/vilnius_mayor_1_How_Vilnius_city_mayor_deals_with_illegally_parked_cars-s720x480-212009-580.jpg" alt="" /></p>
+
+<p>The story went that the mayor of a Lithuanian town saw a luxury car parked on top of the bike lane and decided to act swiftly and decidedly and ran over the car with an armored vehicle. Isn&#8217;t it amazing?</p>
+
+<p>I was talking to some friends yesterday and mentioned that the most amazing thing about this story was the fact that people bought it. And buy it they did. I had an argument with someone about it in which I was ultimately labeled a cynic who only cares for the rich. Yeah. I didn&#8217;t get it either.</p>
+
+<p>I probably am a cynic. Still, I cannot read a story like that and not wonder. For the story to be real, you have to believe that the mayor was strolling about, saw a car, got upset, ran to get himself an armored vehicle, came back and ran over the car, inviting a suit. Or maybe he was riding an armored vehicle in the first place. Either way, wouldn&#8217;t a tow truck be more efficient and cheaper for the city?</p>
+
+<p>No matter. People want to believe and believe they will.</p>
+
+<p>But as it turns out, the scene was <a href="http://www.delfi.lt/news/daily/lithuania/azuoko-reklamine-akcija-su-sarvuociu-pries-ne-vietoje-statomus-automobilius.d?id=48117107">indeed staged</a> (check out Google Translate.) It&#8217;s a promotional campaign film. He&#8217;s saying: everyone must follow the rules, even the rich. Not a bad point, but hardly revolutionary words from a campaigning candidate.</p>
+
+<p>Oh, did I mention that <a href="http://www.youtube.com/watch?v=V-fWN0FmcIU">he will also sweep the streets himself</a>? Yeah, you bought that story, sucker!</p>
+
+<p>Don&#8217;t just believe what you see written in the news. Think, even if just a little bit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome and the new Lion full-screen behaviour]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour/"/>
+    <updated>2011-08-01T23:19:42-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour</id>
+    <content type="html"><![CDATA[<p><img src="http://robteix.com/wp-content/uploads/2011/08/2687444500_e8beddd5e7_b1-580x375.jpg" alt="Three wise monkeys by Anderson Mancini" /></p>
+
+<p>While I was ranting about the annoyances I found in OS X Lion today, a friend commented he had no issues at all, except for the full-screen mode. I got curious because the new Lion full-screen mode is probably the only new feature I found interesting. What did Apple do so wrong?</p>
+
+<p>The answer: <em>Google Chrome</em>.</p>
+
+<p>Wait, what? My friend was complaining that in Chrome you needed to use a keyboard shortcut in order to leave full-screen mode. That, he continued, was because Apple had given programmers too much freedom to implement the new feature any way they wanted. And he knew that, he assured me, because he had searched Google and confirmed it.</p>
+
+<p>The new full-screen mode in Lion is implemented as a window behaviour not enabled by default, but adding it to a window is remarkably easy*:</p>
+
+<pre><code>NSWindowCollectionBehavior behavior = [window collectionBehavior];
+behavior |= NSWindowCollectionBehaviorFullScreenPrimary;
+[window setCollectionBehavior:behavior];
+</code></pre>
+
+<p>Adding the NSWindowCollectionBehaviorFullScreenPrimary behaviour to a window will enable a small button to its top right corner. When enabled, the mode will allocate a new Desktop for the full-screen app and will also add an icon to the system menu to allow you to quickly leave full-screen mode.</p>
+
+<p>And that&#8217;s the little icon my friend complained Chrome wasn&#8217;t showing, forcing him to use a keyboard shortcut. Imagine the trepidity! And all because of Apple.</p>
+
+<p>I tried to explain that the problem was that Chrome&#8217;s windows still didn&#8217;t support the new full-screen behaviour but my friend&#8217;s version of reality was unswayable: Chrome supported the new behaviour and the problem was Apple. He had searched Google to confirm it. What could I possibly do?</p>
+
+<p>Search it myself is what. And search I did. And I found <a href="http://code.google.com/p/chromium/issues/detail?id=74065#c39">this comment</a> on Chromium&#8217;s bug tracker:</p>
+
+<blockquote><p>Comment <a href="http://code.google.com/p/chromium/issues/detail?id=74065#c39">39</a> by <a href="http://code.google.com/u/rsesek@chromium.org/">rsesek@chromium.org</a>, Jul 15, 2011</p></blockquote>
+
+<p>We had a conversation with one of our designers, and what we&#8217;re going to do right now is remove the fullscreen button so we don&#8217;t advertise a behavior that we don&#8217;t really implement. That change just landed and will hit Canary/Dev channels soon.</p>
+
+<p>Long-term, we&#8217;re going to implement a proper fullscreen interface for Lion. In this interface, we&#8217;ll also experiment with having a collapsable toolbar. Until then, fullscreen will operate as it does on Leopard/Snow Leopard.</p>
+
+<p>So there it is, straight from the source. Chromium &#8211; same as Chrome &#8211; still doesn&#8217;t support the new behaviour. Done. Nothing like reality to end a discussion.</p>
+
+<p>Except my friend would not yield. Apple still needs to fix Chrome and anyone who disagrees &#8211; presumably that Chromium developer himself &#8211; is to be disregarded as an Apple fanboy.</p>
+
+<p>If however you don&#8217;t want to wait for Google (or is it Apple?0 to release Chrome with the new full-screen behaviour, you can get by using <a href="http://chpwn.com/apps/maximizer.html">Maximizer</a>, which adds the behaviour to any application window.</p>
+
+<ul>
+<li>Yes, I do realize that if you&#8217;re supporting multiple OSX versions and, even worse, multiple platforms, things get slightly more complex, but still.</li>
+</ul>
+
+
+<p>(<a href="http://www.flickr.com/photos/ektogamat/2687444500/sizes/l/in/photostream/">Image by Anderson Mancini</a>)</p>
+]]></content>
+  </entry>
+  
+</feed>

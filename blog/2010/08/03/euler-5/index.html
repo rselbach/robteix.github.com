@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Euler 5 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="So the other night I was a bit bored and decided to do something to pass the time. I first came across Project Euler a while ago, but had never gone &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2010/08/03/euler-5/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Euler 5</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:30:36-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #5 statement is &#8211;</p>
+
+<blockquote><p>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.</p></blockquote>
+
+<p>What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?</p>
+
+<p>My first attempt was using brute force, but it didn&#8217;t go very well. It took a considerable amount of time, so I decided to think about the problem a bit. In the end, it boils down to the a relation between the lesser common multiplier and the greater common divisor.</p>
+
+<pre><code>def gcd(a, b):
+        if b== 0: return a
+        return gcd(b, a % b)
+
+def lcm(a, b):
+        return a * b / gcd(a, b)
+
+if __name__ == "__main__":
+        b = 2
+        for i in range(3,20):
+                b = lcm(b, i)
+        print b
+</code></pre>
+
+<p>While the original code took several seconds before I killed it, this runs in 0.015s.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:30:36-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/code/'>Code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2010/08/03/euler-5/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2010/08/03/euler-5/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2010/08/03/euler-4/" title="Previous Post: Euler 4">&laquo; Euler 4</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2010/08/03/euler-6/" title="Next Post: Euler 6">Euler 6 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

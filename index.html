@@ -1,1 +1,896 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container Changes in C++11</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-15T11:41:36-03:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find that containers have received some special love.</p>
+
+<h1>Initialization</h1>
+
+<p>C++ was long behind modern languages when it came to initializing containers. While you could do</p>
+
+<p>[cpp]int a[] = {1, 2, 3};[/cpp]</p>
+
+<p>for simple arrays, things tended to get more verbose for more complex containers:</p>
+
+<p>[cpp]
+vector<string> v;
+v.push_back(&#8220;One&#8221;);
+v.push_back(&#8220;Two&#8221;);
+v.push_back(&#8220;Three&#8221;);
+[/cpp]</p>
+
+<p>C++11 has introduced an easier, simpler way to initialize this:</p>
+
+<p>[cpp]
+vector<string> v = {&#8220;One&#8221;, &#8220;Two&#8221;, &#8220;Three&#8221;};
+[/cpp]</p>
+
+<p>The effects of the changes are even better for things like <strong>map</strong>s, which could get cumbersome quickly:</p>
+
+<p>[cpp]
+map&lt;string, vector<string> > m;
+vector<string> v1;
+v1.push_back(&#8220;A&#8221;);
+v1.push_back(&#8220;B&#8221;);
+v1.push_back(&#8220;C&#8221;);</p>
+
+<p>vector<string> v2;
+v2.push_back(&#8220;A&#8221;);
+v2.push_back(&#8220;B&#8221;);
+v2.push_back(&#8220;C&#8221;);</p>
+
+<p>m[&#8220;One&#8221;] = v1;
+m[&#8220;Two&#8221;] = v2;
+[/cpp]</p>
+
+<p>This can now be expressed as:</p>
+
+<p>[cpp]
+map&lt;string, vector<string>> m = One,</p>
+
+<pre><code>                             {"Two", {"Z", "Y", "X"}}};
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Much simpler and in line with most modern languages. As an aside, there&#8217;s another change in C++11 that would be easy to miss in the code above. The declaration</p>
+
+<p>[cpp]map&lt;string, vector<string>> m;[/cpp]</p>
+
+<p>was illegal until now due to >> always being evaluated to the right-shift operator; a space would always be required, like</p>
+
+<p>[cpp]map&lt;string, vector<string> > m[/cpp]</p>
+
+<p>No longer the case.</p>
+
+<h1>Iterating</h1>
+
+<p>Iterating through containers was also inconvenient. Iterating the simple <em>vector v</em> above:</p>
+
+<p>[cpp]
+for (vector<string>::iterator i = v.begin();</p>
+
+<pre><code> i != v.end(); i++)
+cout &lt;&lt; i &lt;&lt; endl;[/cpp]
+</code></pre>
+
+<p>Modern languages have long had some <em>foreach</em> equivalent that allowed us easier ways to iterate through these structures without having to explicitly worry about iterators types. C++11 is finally catching up:</p>
+
+<p>[cpp]
+for (string s : v)</p>
+
+<pre><code>cout &lt;&lt; s &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>As well, C++11 brings in a new keyword, <em>auto</em>, that will evaluate to a type in compile-type. So instead of</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++) {
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>we can now write</p>
+
+<p>[cpp]
+for (auto i = m.begin(); i != m.end(); i++) {
+[/cpp]</p>
+
+<p>and <em>auto</em> will evaluate to <em>map&lt;string, vector<string>>::iterator</em>.</p>
+
+<p>Combining these changes, we move from the horrendous</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++)
+for (vector&lt;string&gt;::iterator j = i-&gt;second.begin();
+     j != i-&gt;second.end(); j++)
+    cout &lt;&lt; i-&gt;first &lt;&lt; ': ' &lt;&lt; *j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>to the much simpler</p>
+
+<p>[cpp]
+for (auto i : m)</p>
+
+<pre><code>for (auto j : i.second)
+    cout &lt;&lt; i.first &lt;&lt; ': ' &lt;&lt; j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Not bad.</p>
+
+<p>C++11 support varies a lot from compiler to compiler, but all of the changes above are already supported in the latest versions of GCC, LLVM, and MSVC compilers.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">For Is Evil or Something</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-19T10:31:16-03:00" pubdate data-updated="true">Nov 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>Have you ever wondered how FORs impact your code? How they are limiting your design and more important how they are transforming your code into an amount of lines without any human meaning?</p></blockquote>
+
+<p>How can you not want to read an article that starts like that? I had to steal the intro from the original. Seriously, I have used FOR since I learned BASIC back in the day. I never thought about how it was limiting my design. I. Must. Learn. How.</p>
+
+<p>The article I am referring to is, <a href="http://www.lordofthejars.com/2012/10/avoiding-fors-anti-if-campaign.html">Avoiding FORs - Anti-If Campaign</a>. Eager learner I, I could not not read it.</p>
+
+<p>After the resplendent intro, <em>Avoiding FOR</em> goes on to show &#8220;how to transform a simple example of a for […], to something more readable and well designed.&#8221;</p>
+
+<p>It takes this unreadable piece of code — that I now recognize as unreadable:</p>
+
+<p>[java]
+public class Department {</p>
+
+<pre><code>private List resources = new ArrayList();
+
+public void addResource(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void printSlips() {
+
+    for (Resource resource : resources) {
+        if(resource.lastContract().deadline().after(new Date())) {
+
+            System.out.println(resource.name());
+            System.out.println(resource.salary());
+        }
+    }
+}
+</code></pre>
+
+<p>}[/java]</p>
+
+<p>My eyes hurt already. Thankfully the author transforms the aberration above into this clean, much more readable snippet:</p>
+
+<p>[java]public class ResourceOrderedCollection {</p>
+
+<pre><code>    private Collection&lt;Resource&gt; resources = new ArrayList&lt;Resource&gt;();
+
+
+
+public ResourceOrderedCollection() {
+    super();
+}
+
+public ResourceOrderedCollection(Collection&lt;Resource&gt; resources) {
+    this.resources = resources;
+}
+
+public void add(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void forEachDo(Block block) {
+    Iterator&lt;Resource&gt; iterator = resources.iterator();
+
+    while(iterator.hasNext()) {
+        block.evaluate(iterator.next());
+    }
+
+}
+
+public ResourceOrderedCollection select(Predicate predicate) {
+
+    ResourceOrderedCollection resourceOrderedCollection = new ResourceOrderedCollection();
+
+    Iterator&lt;Resource&gt; iterator = resources.iterator();
+
+    while(iterator.hasNext()) {
+        Resource resource = iterator.next();
+        if(predicate.is(resource)) {
+            resourceOrderedCollection.add(resource);
+        }
+    }
+
+    return resourceOrderedCollection;
+}
+</code></pre>
+
+<p>}</p>
+
+<p>public class Department {</p>
+
+<pre><code>private List&lt;Resource&gt; resources = new ArrayList&lt;Resource&gt;();
+
+public void addResource(Resource resource) {
+    this.resources.add(resource);
+}
+
+public void printSlips() {
+    new ResourceOrderedCollection(this.resources).select(new InForcePredicate()).forEachDo(new PrintSlip());
+}
+</code></pre>
+
+<p>}[/java]</p>
+
+<p>Wait, what? Is this an Onion article?</p>
+
+<p>Snarky Mode Off.</p>
+
+<p>I understand what the author wanted to do, but really, the example used is so off the left field that it&#8217;s not even funny.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife&#8217;s Bday</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T12:07:51-03:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg" alt="20121111-121454.jpg" /></a></p>
+
+<p>Wife&#8217;s birthday translates into dad-daughter&#8217;s day out as my wife gets a day-off from us :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/10/all-those-black-people/">All Those Black People&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-10T18:39:16-03:00" pubdate data-updated="true">Nov 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had a talk with my landlady.</p>
+
+<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24-580x368.jpg" alt="Prostest against the Argentine government in Buenos Aires" /></a></p>
+
+<p>There had been another set of monster protests against the government in Argentina and she was talking about the situation in her country.</p>
+
+<p>As usual, she scolded me for leaving Brazil and coming here.</p>
+
+<p>As usual, I tried to stay out of it saying I don&#8217;t really follow the news.</p>
+
+<p>&#8220;And also,&#8221; I explained, &#8220;Brazil isn&#8217;t that much better, you know?&#8221;</p>
+
+<p>&#8220;Ah, but you are so much more organized,&#8221; she continued.</p>
+
+<p>&#8220;We were lucky with the last few presidencies,&#8221; I conceded.</p>
+
+<p>&#8220;That wasn&#8217;t luck,&#8221; she educated me. &#8220;You know how to vote over there.&#8221;</p>
+
+<p><em>LOL</em></p>
+
+<p>&#8220;We have too much corruption,&#8221; I continued. &#8220;And crime. We&#8217;ve got too much violence!&#8221;</p>
+
+<p>And then she said something I heard before in Argentina.</p>
+
+<p>&#8220;Ah, yes,&#8221; she permitted sympathetically. &#8220;You have all those black people…&#8221;</p>
+
+<p>She must have seen my face because she said &#8220;well, I don&#8217;t know, of course.&#8221;</p>
+
+<p>&#8220;That&#8217;s not the problem, you know,&#8221; I said. &#8220;When I was kidnapped, none of the men were blacks. That really isn&#8217;t how it works over there.&#8221;</p>
+
+<p>And we changed the subject.</p>
+
+<p>That&#8217;s not the first time I hear from someone here the same argument that Brazil&#8217;s problems are somehow a result of &#8220;those black people&#8221; but it stills throws me off, every time.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-10T08:57:25-03:00" pubdate data-updated="true">Nov 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>An idiot with a PhD is still an idiot</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/">Rolling Out Your Own Fusion Drive With the Recovery Partition</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-09T08:18:34-03:00" pubdate data-updated="true">Nov 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM.png"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM-580x493.png" alt="disk utility showing Fusion Drive" /></a></p>
+
+<p>My Macbook Pro has two disks, an HDD and an SSD, each of 240GB or so. With the details of Apple&#8217;s Fusion Drive coming out I decided to do what any reasonable geek would do to their production computer: I&#8217;ve decided to implement my own untested, highly experimental and barely understood Fusion Drive.</p>
+
+<p>One of the things that initially put me off doing this was that according to the 3,471,918 tutorials that have popped up in the last 10 minutes would cause me to lose my Mountain Lion recovery partition because these partitions are not supported in a Fusion drive. Turns out this is not exactly true.</p>
+
+<p>Fusion Drive is just a marketing term for a what essentially is a CoreStorage logical volume spanning an SSD <em>and</em> an HDD. And although you cannot have the recovery partition inside a CS logical volume, it doesn&#8217;t mean you can&#8217;t have <em>both</em> a recovery partition <em>and</em> a Fusion Drive at the same time. It&#8217;s all in the <a href="http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man8/diskutil.8">diskutil man page</a>, by the way:</p>
+
+<blockquote><p>Create a CoreStorage logical volume group. The disks specified will become the (initial) set of physical volumes; more than one may be specified. <strong>You can specify partitions</strong> (which will be re-typed to be Apple_CoreStorage) or whole-disks (which will be partitioned as GPT and will contain an Apple_CoreStorage partition). The resulting LVG UUID can then be used with createVolume below. All existing data on the drive(s) will be lost. Ownership of the affected disk is required.</p></blockquote>
+
+<p>What matters is what&#8217;s in bold above: we&#8217;re not limited to using whole disks. So here&#8217;s what I did.</p>
+
+<p>I rebooted my system and held the <strong>option</strong> key so I could select my recovery partition as the start up disk. Once the OSX recovery started up, I launched a terminal to do the dirty work.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>From this I noted two things: (a) the main SSD partition (the one holding my OSX and that sited by my recovery partition) and (b) the disk name of my HDD. They were respectively <em>disk0s2</em> and <em>disk1</em> in my case, but they&#8217;ll very likely be different for you. Then the magic begins.</p>
+
+<pre><code>&lt;code&gt;diskutil cs create "Fusion Drive" disk0s2 disk1
+&lt;/code&gt;
+</code></pre>
+
+<p>(For crying out loud, you need to change disk0s2 and disk1 for whatever makes sense on your system!)</p>
+
+<p>That created the coreStorage logical volume. Then I listed it all again to note what the new logical volume UUID was.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>The UUID is a long number identifier like F47AC10B-58CC-4372-A567-0E02B2C3D479. You&#8217;ll need that one next to actually create the volume where you&#8217;ll be installing your system.</p>
+
+<pre><code>&lt;code&gt;diskutil coreStorage createVolume F47AC10B-58CC-4372-A567-0E02B2C3D479 jhfs+ "Macbook FD" 100%
+&lt;/code&gt;
+</code></pre>
+
+<p>The command above will create a volume named &#8220;Macbook FD&#8221; using 100% of the logical volume we had created earlier.</p>
+
+<p>I then restored my Time Machine backup and that&#8217;s it.</p>
+
+<p><strong>Update:</strong> Note that after this process, the Recovery partition will still be present and things that require it (such as Find My Mac) will work fine. Some people correctly pointed out, however, that you can no longer boot from the recovery partition by using the menu from holding ⌥ (<strong>option)</strong> during boot. I&#8217;m not sure why that is, but fear not, it will still boot normally from pressing <strong>⌘R (command + R)</strong>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/08/not-a-ok/">Not A-ok</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-08T14:48:39-03:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have a little confession to make: our family is going through a rough patch. Both my wife and I are having problems. No, not between us. And both are experiencing very different sorts of problems. But the happening-at-the-same-time complicates the one-supports-the-other thing.</p>
+
+<p>And to compound to that, I have been sick.</p>
+
+<p>As I sat in the waiting room at the hospital the other day, waiting for some exams, I felt like this is one of the worst times of my life. I feel tired, unmotivated, unappreciated, and generally unhappy. And fucking hopeless. That&#8217;s the worst part, I suppose.</p>
+
+<p>I also have been distancing myself from friends lately. Ostensibly to avoid distractions in a time where I am having to give all and a bit more to a project I do not believe in. Truth be told, I just don&#8217;t feel like small talk but I also don&#8217;t want bring others down to my Dark Hole of Misery. And so I&#8217;m trying to keep some distance.</p>
+
+<p>I feel lost. I look at my friends and how they all seem to have it all figured out already. I&#8217;m still trying to figure out who the fuck I am. I was so sure when I was younger. I was so fucking <em>good</em> at what I did. Now? I just don&#8217;t know anymore. I feel unhappy.</p>
+
+<p>I know some people who will be So. Fucking. Happy. reading the paragraph above. This one&#8217;s for free for you guys.</p>
+
+<p>But not all is bad news. I actually got some good news last night. I can&#8217;t tell the details although I know some of you know exactly what this is about. Anyway, I now have a set date for it and it&#8217;s in under six months from now.</p>
+
+<p>I&#8217;m actually confident that this will make it all better somehow. Just have to wait.</p>
+
+<p>Sorry for the downer, but I felt like writing something.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/08/holy-sht-its-hot/">Holy Sh*t It&#8217;s Hot!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-08T12:32:37-03:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I arrived in Cordoba, Argentina, in 2009, it snowed. Not white-shit snow, but just a tiny bit to tell me “Hey man, see how it’s not too hot in here? It’s going to be alright” I was pretty happy about that.</p>
+
+<p>Temperatures stayed very mild through August and September and I was beginning to like the place. I went to Brazil to bring my wife and daughter who had stayed behind until I got settled here. I told my wife that the climate was mild and she was glad. And then we came back.</p>
+
+<p>The weekend my wife and daughter arrived in Cordoba, Argentina, the temperature got to 43°C. An oppressive heat. The following Monday I went to work.</p>
+
+<p>“Good morning,” I said to the receptionist. “So hot!!”</p>
+
+<p>“Yes!” She replied, followed by the first time I heard something I would hear many, many times again every time I mentioned the heat. “But for you this should be nothing, right? You are used to much worse in Brazil”</p>
+
+<p><em>Are you high?</em> I thought. <em>No! No I’m not used to living in Hades!</em></p>
+
+<p>“Er&#8230; not really, I never experienced this kind of heat before” and then added the question I was really looking forward to ask. “But&#8230; this isn’t normal here, is it?”</p>
+
+<p>She didn’t seem to think twice before shattering my hopes, “Yep, pretty normal.” Turns out she wasn’t lying either. Since then, I’ve seen several days over 40°C.</p>
+
+<p>See, this is what the Wikipedia says about the place I grew up in:</p>
+
+<blockquote><p>  Under the Köppen climate classification, Caxias do Sul features a subtropical highland climate. The average annual temperature is 16°C (60.8°F). In July, the coldest month, the average high temperature is 17°C (62.6°F) and the average low is 8°C (46.4°F); in January, the hottest, they&#8217;re 26°C (78.8°F) and 16°C (60.8°F), respectively. Frosts are common in the winter and snow can occur, but it is less common.</p></blockquote>
+
+<p>That sounds about right to me. I usually start complaining about the heat when temperatures go above 22°C or so. When I was a kid, I used to say my favourite temperature was 16°C. <em>Not hot, not cold, just perfect.</em></p>
+
+<p>Bottom line is, no, I am not used to these temperatures. But for some reason, every time I mention the heat to someone in Cordoba, they invariably answer me with &#8220;but that&#8217;s nothing for you, right? You&#8217;re used to so much more heat in Brazil!&#8221;</p>
+
+<p>I&#8217;m sure there are places in Brazil where 40°C weather is normal, but no, I have never lived in a place like that. The hottest place I&#8217;ve lived was Sao Paulo where, I read just last week, they experienced the third highest recorded temperature ever of 36°C. I then checked my phone&#8217;s weather app and three of the next five days were going to be hotter then 36°C.</p>
+
+<p>In the eternal words of the lovely Lisa Leblanc, <em>osti qu&#8217;y fait chaud!</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter/">How I Accidentally Because a Domain Squatter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-01T21:39:23-03:00" pubdate data-updated="true">Nov 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A couple of days ago, I was listening to one of my favourite podcasts, <a href="http://5by5.tv/frequency">The Frequency</a>, when one of the hosts, Dan Benjamin, thought of a cool domain name, <a href="http://ohitson.com">ohitson.com</a> and checked to see if it was available. Turns out it was and he said he was registering right there and then. Now, two things: (a) I was listening to a recorded podcast, not live; and (b) I thought to myself, damn it! it <em>is</em> a cool domain name.</p>
+
+<p>The next day, I launched <a href="http://hover.com">Hover</a> and checked the domain name and to my surprise it was available. I simply thought either Dan had given up on it or, most likely, I had misunderstood the domain name he was talking about and fortunately that had made me thing of <em>this</em> cool domain name. I even checked Google to make sure &#8220;Oh, it&#8217;s on&#8221; was really written like that :P</p>
+
+<p>Obviously I went ahead and registered the name. After that, I listed to that day&#8217;s The Frequency and heard Dan tell Haddie something to the effect of &#8220;oh, I forgot to register that domain yesterday!&#8221; That&#8217;s when I thought, oh-oh, maybe I <em>had</em> heard the correct domain name.</p>
+
+<p>As it turns out, I was just listening to today&#8217;s episode and guess what? Dan mentions that someone registered it due to his mention on the show (which is technically true.)</p>
+
+<p>But I am a nice guy. I offered to transfer the domain to Dan for free just a few minutes ago. Not sure he&#8217;ll see my posts to app.net or Twitter. If not, I&#8217;ll try again a few times. I really don&#8217;t have any intention to keep this domain name as long as he still wants it. Sounds unfair.</p>
+
+<p><strong>Update 7 Nov 2012:</strong> can you believe he actually accepted my offer? What a douche! Just kidding, it was the Fair Thing to Do™ and I&#8217;m happy to say the domain has been transferred to His Benjaminship already.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing/">Disney Taking Over Star Wars Is a Good Thing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-01T20:59:38-03:00" pubdate data-updated="true">Nov 1<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://ohitson.com/wp-content/uploads/2012/11/527279_436801283051213_1826357756_n-580x500.jpg" alt="" /></p>
+
+<p>According to everyone on the Internet, George Lucas is selling Lucasfilm and other businesses—including the revered Industrial Light &amp; Magic—to the evil mouse that is The Walt Disney Company.</p>
+
+<p>But what is really setting the Internet on fire is a comment from the <a href="http://thewaltdisneycompany.com/disney-news/press-releases/2012/10/disney-acquire-lucasfilm-ltd">press release</a>:</p>
+
+<blockquote><p>  In 2015, we&#8217;re planning to release Star Wars Episode 7 – the first feature film under the &#8220;Disney-Lucasfilm&#8221; brand. That will be followed by Episodes 8 and 9 – and our long term plan is to release a new Star Wars feature film every two to three years.</p></blockquote>
+
+<p>And so I decided to chime in to say why I think this is <em>awesome</em> news. To understand why, you need to understand just a little bit of the history of Star Wars.</p>
+
+<p>Back in the early 1970s, George Lucas decided to create a science-fiction epic. He had touched the genre with THX1138 in 1971, but now he wanted something more upbeat. He wanted <a href="http://www.youtube.com/watch?v=gNIVpMXHqlk">Flash Gordon</a>.</p>
+
+<p>George Lucas sat and tried to write a screenplay but was ultimately unsuccessful, settling for an outline instead. And it ended up a copy of Akira Kurozawa’s <em>The Hidden Fortress</em>, as can be seen by comparing both the film’s and Lucas’ synopses (from <a href="http://hem.bredband.net/wookiee/development/">The development of Star Wars</a>):</p>
+
+<blockquote><p>  <em>The Star Wars:</em></p></blockquote>
+
+<p>  “It is the thirty-third century, a period of civil wars in the galaxy. A rebel princess, with her family, her retainers, and the clan treasure, is being pursued. If they can cross territory controlled by the Empire and reach a friendly planet, they will be saved. The Sovereign knows this, and posts a reward for the capture of the princess.”8</p>
+
+<p>  <em>The Hidden Fortress:</em></p>
+
+<p>  “It is the sixteenth century, a period of civil wars. A princess, with her family, her retainers, and the clan treasure is being pursued. If they can cross enemy territory and reach a friendly province they will be saved. The enemy knows this and posts a reward for the capture of the princess.</p>
+
+<p>The screenplay eventually evolved into the very different story we are all familiar with. His dialogue was still terrible even after he got some help. It was so bad, in fact, that actor Harrison Ford famously threatened to tie Lucas down and force him to read his own dialogue. But the movie worked. Yes, it was cheesy and yes, there are some pretty serious plot holes, but overall it was a decent movie, innovative enough at the time to draw huge crowds into the movie theaters.</p>
+
+<p>But compared with <em>The Empire Strikes Back</em> and <em>The Return of the Jedi</em>, it is bad. The reason is that George gave up writing screenplays and let others do that job, resulting in the <em>great</em> and dark <em>The Empire&#8230;</em>. He came back to co-write <em>The Return&#8230;</em> and we got the Ewoks. He would later write <em>Phantom Menace</em> all by himself. and I suppose this speaks by itself. Most of the other films we associate with Lucas were written—and often directed—by someone else. Think <em>Indiana Jones</em>.</p>
+
+<p>My point here is, George Lucas cannot write to save his life. <em>He. Is. Terrible.</em></p>
+
+<p>Back to the press release from Disney, here’s Lucas himself:</p>
+
+<blockquote><p>  It&#8217;s now time for me to pass Star Wars on to a new generation of filmmakers. I&#8217;ve always believed that Star Wars could live beyond me, and I thought it was important to set up the transition during my lifetime.</p></blockquote>
+
+<p><em>Yes!</em> He is right. It is high time he passed Star Wars to someone more competent. Especially after he managed to create an absolutely <em>horrible</em> prequel trilogy <em>and</em> mess with the originals at the same time. <em>Solo shot first, not Greedo!</em></p>
+
+<p>So yes, passing the torch is a good thing. Sure, Disney is a soulless, conservative corporation known for lobying Mickey Mouse’s copyright ownership rights into infinity. Also, Pooh, a <em>public domain</em> charater taken over. And yes, Disney gave us <em>John Carter</em>. But they also own Pixar, so I give them a little leeway here.</p>
+
+<p>The fact is that whoever Disney gives control of Star Wars to, he or she is unlikely to do worse than the man who brought us the Ewoks, Jar-Jar Binks, and the epic of zoophilia: <a href="http://www.youtube.com/watch?v=u6hDf5cCUJw">Howard the Duck</a>.</p>
+
+<p>Unless they cast Justin Bieber as Luke. Oh boy&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/robteix/blog/page/2/">&larr; Older</a>
+    
+    <a href="/robteix/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife&#8217;s bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people&#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

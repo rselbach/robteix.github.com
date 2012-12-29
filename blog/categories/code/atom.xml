@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Code | My Octopress Blog]]></title>
+  <link href="http://robteix.github.com/robteix/blog/categories/code/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/robteix/"/>
+  <updated>2012-12-29T10:54:28-03:00</updated>
+  <id>http://robteix.github.com/robteix/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google App Engine is making me mad]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
+    <updated>2012-08-20T22:14:14-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
+    <content type="html"><![CDATA[<p>An user found a bug in <a href="http://unico.robteix.com/">Unico</a> and I hunt it down: session data for some users simply fails to load.</p>
+
+<p>While checking appengine's dashboard for logs and whatnot I came across a <strong>Server Error</strong>, nothing else, while trying to check the data store viewer.</p>
+
+<p>I've searched a bit and apparently this is caused by "bad entities" which cause the google viewer to break. The solution would be to download all data, find the bad entity, fix it and upload the data again. Except this isn't supported for Go applications.</p>
+
+<p>Seriously considering moving Unico to AWS, just so I have more control over it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Anagramizer, a simple anagram solver in Go]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go/"/>
+    <updated>2011-06-20T21:18:27-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go</id>
+    <content type="html"><![CDATA[<p>This weekend I took the family to celebrate Father's Day away from town. We went around getting to know parts of the province we live in and never been to.</p>
+
+<p><a href="http://robteix.com/wp-content/uploads/2011/06/IMG_0402.jpg"><img src="http://robteix.com/wp-content/uploads/2011/06/IMG_0402-300x225.jpg" alt="" /></a>We came back yesterday and the plan today was for a nice, calm day at home (it's a holiday of some sort here.) Then I got engaged in a game called <strong>Hanging with Friends</strong>, a mix of the traditional hangman with a bit of Scrabble.</p>
+
+<p>Since English isn't my first language, I have a limited vocabulary, which leaves me at a disadvantage against my English-speaking friends. I can handle the "hangman" part of the game where I have to guess the word my friends come up with; but when it becomes "Scrabble" and I've got to form words using only a given set of letters and still make them difficult enough that a native English speaker will have problems figuring them out, then it's tough.</p>
+
+<p>An itch that needed some scratching. Enter <a href="http://robteix.com/w/Anagramizer">Anagramizer</a>.</p>
+
+<p>When I woke up this morning, I decided to write a little program to help me. You call it cheating, I call it having a bit of nerd fun.</p>
+
+<p>Being that I'm currently in love with <a href="http://golang.org">Go</a>, I decided to write in that language and it was really easy and quick to do it. It took me about half an hour to write the program that did what I needed. But then...</p>
+
+<p>I succumbed to the temptation and started adding bells and whistles. Admittedly it was mostly for my own amusement and trying stuff in Go, but by the time we were leaving for lunch, the program had more options than the KDE audio volume utility (see what I did just there?)</p>
+
+<p>I decided to <a href="http://robteix.com/w/Anagramizer">make it available to anyone</a> who wants to play with it. It served its purpose of entertaining me for about half a day :)</p>
+
+<p>It's now available on <a href="https://github.com/robteix/anagramizer">Github</a> and released under a BSD licence.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Euler 9 in Go]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/06/14/euler-9-in-go/"/>
+    <updated>2011-06-14T12:30:06-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/06/14/euler-9-in-go</id>
+    <content type="html"><![CDATA[<p>This was surprising to me. For fun I picked one of the Euler algorithms I played with in the past and rewrote it in <a href="http://golang.org">Go</a>. The idea was to rewrite it idiomatically to see how different things might look. Nothing else. The very first thing I did was to get the exact algorithm and rewrite, no idiomatic changes.</p>
+
+<pre><code>package main
+
+import "fmt"
+
+func isTriplet(a, b, c int) bool {
+        return a * a + b * b == c * c
+}
+
+func main() {
+        for a := 1; a &lt; 1000; a++ {
+                for b := a + 1; b &lt; (1000 - a) / 2; b++ {
+                        c := 1000 - a - b
+                        if isTriplet(a, b, c) {
+                                fmt.Println(a * b * c)
+                                return
+                        }
+                }
+        }
+
+}
+</code></pre>
+
+<p>What surprised me is that this thing runs in 0.005s, which is faster than <a href="http://robteix.com/2010/08/03/euler-9/">the Python implementation</a> and very close to <a href="http://robteix.com/2010/08/04/euler-9-in-c/">the one in C</a>. It surprised me because this wasn't really supposed to happen. The Go compiler isn't well optimized, especially compared to compilers with a many-years headstart.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Euler 15 in Python]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2/"/>
+    <updated>2010-08-07T19:39:27-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2</id>
+    <content type="html"><![CDATA[<p>This one isn't even funny...</p>
+
+<blockquote><p>Starting in the top left corner of a 2x2 grid, there are 6 routes (without backtracking) to the bottom right corner.</p></blockquote>
+
+<p><img src="http://robteix.com/wp-content/uploads/2010/08/p_015.gif" alt="" /></p>
+
+<p>How many routes are there through a 20x20 grid?</p>
+
+<p>Your first thought would be to generate the routes, but for a 20x20 grid, those amount to BILLIONS and you'd try to do it recursively too! Forget it.</p>
+
+<p>But if you have some CompSci-level math background, though, you'll remember this one--reading <a href="http://www.amazon.com/gp/product/0321637135?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0321637135">The Art of Computer Programming, Vol. 4</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=0321637135" alt="" /> also helps. It's a matter of combinatorics and if we take <em>w</em> for the width and <em>h</em> for the height, all we need to do is calculate,</p>
+
+<p>[latex size="3"]\frac{(w + h)!}{w!h!}[/latex]</p>
+
+<p>and that's it. I didn't even write a program for this, instead using Python's interactive shell, but just for the same of completeness, here's a "program" to calculate the possibles paths in a 20x20 grid.</p>
+
+<pre><code>import math
+w = h = 20
+print math.factorial(w + h) / (math.factorial(w) * math.factorial(h))
+</code></pre>
+
+<p>That's it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Euler 11 in Python]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2010/08/06/euler-11-in-python/"/>
+    <updated>2010-08-06T14:19:56-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2010/08/06/euler-11-in-python</id>
+    <content type="html"><![CDATA[<p>Project Euler's problem #11 statement goes:</p>
+
+<blockquote><p>In the 20x20 grid below, four numbers along a diagonal line have been marked in red.</p></blockquote>
+
+<p>08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
+81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
+52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
+22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
+24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
+32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
+67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
+24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
+21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
+78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
+16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
+86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
+19 80 81 68 05 94 47 69 28 73 92 13 86 52 17 77 04 89 55 40
+04 52 08 83 97 35 99 16 07 97 57 32 16 26 26 79 33 27 98 66
+88 36 68 87 57 62 20 72 03 46 33 67 46 55 12 32 63 93 53 69
+04 42 16 73 38 25 39 11 24 94 72 18 08 46 29 32 40 62 76 36
+20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
+20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
+01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48</p>
+
+<p>The product of these numbers is [pmath]26 * 63 * 78 * 14 = 1788696[/pmath].</p>
+
+<p>What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20x20 grid?</p>
+
+<p>This one is remarkably easy but also was quite fun. I think it's because it reminds me of the kind of work we'd do during our Algorithms classes during my first year in college. And so this one goes to my Algorithms teacher, Ricardo Vargas Dornelles--best teacher I've ever had too.</p>
+
+<pre><code>import operator
+numbers = [[8,2,22,97,38,15,0,40,0,75,4,5,7,78,52,12,50,77,91,8],
+[49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,4,56,62,0],
+[81,49,31,73,55,79,14,29,93,71,40,67,53,88,30,3,49,13,36,65],
+[52,70,95,23,4,60,11,42,69,24,68,56,1,32,56,71,37,2,36,91],
+[22,31,16,71,51,67,63,89,41,92,36,54,22,40,40,28,66,33,13,80],
+[24,47,32,60,99,3,45,2,44,75,33,53,78,36,84,20,35,17,12,50],
+[32,98,81,28,64,23,67,10,26,38,40,67,59,54,70,66,18,38,64,70],
+[67,26,20,68,2,62,12,20,95,63,94,39,63,8,40,91,66,49,94,21],
+[24,55,58,5,66,73,99,26,97,17,78,78,96,83,14,88,34,89,63,72],
+[21,36,23,9,75,0,76,44,20,45,35,14,0,61,33,97,34,31,33,95],
+[78,17,53,28,22,75,31,67,15,94,3,80,4,62,16,14,9,53,56,92],
+[16,39,5,42,96,35,31,47,55,58,88,24,0,17,54,24,36,29,85,57],
+[86,56,0,48,35,71,89,7,5,44,44,37,44,60,21,58,51,54,17,58],
+[19,80,81,68,5,94,47,69,28,73,92,13,86,52,17,77,4,89,55,40],
+[4,52,8,83,97,35,99,16,7,97,57,32,16,26,26,79,33,27,98,66],
+[88,36,68,87,57,62,20,72,3,46,33,67,46,55,12,32,63,93,53,69],
+[4,42,16,73,38,25,39,11,24,94,72,18,8,46,29,32,40,62,76,36],
+[20,69,36,41,72,30,23,88,34,62,99,69,82,67,59,85,74,4,36,16],
+[20,73,35,29,78,31,90,1,74,31,49,71,48,86,81,16,23,57,5,54],
+[1,70,54,71,83,51,54,69,16,92,33,48,61,43,52,1,89,19,67,48]]
+
+maxp = 0
+for row in range(0,16):
+        for col in range(0,16):
+                maxp = max(maxp, reduce(lambda x,y: x*y, \
+                                        [n for n in numbers[row][col:col+4]]))
+                maxp = max(maxp, numbers[row][col] * numbers[row + 1][col + 1] * \
+                                 numbers[row+2][col+2] * numbers[row+3][col+3])
+                maxp = max(maxp, reduce(lambda x,y: x*y, \
+                                        [n[col] for n in numbers[row:row+4]]))
+                if col &gt; 3:
+                        maxp = max(maxp, numbers[row][col] * \
+                                         numbers[row + 1][col - 1] * \
+                                         numbers[row+2][col-2] * \
+                                         numbers[row+3][col-3])
+
+print maxp
+</code></pre>
+
+<p>As well, this runs in 0.020s, so not bad at all.</p>
+]]></content>
+  </entry>
+  
+</feed>

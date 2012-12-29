@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Euler 10 in Python - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="I decided to take on Project Euler&#8217;s problem #10. Its statement goes like this: The sum of the primes below 10 is [pmath]2 + 3 + 5 + 7 = 17[/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2010/08/05/euler-10-in-python/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Euler 10 in Python</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-05T22:07:00-03:00" pubdate data-updated="true">Aug 5<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I decided to take on Project Euler&#8217;s problem #10. Its statement goes like this:</p>
+
+<blockquote><p>The sum of the primes below 10 is [pmath]2 + 3 + 5 + 7 = 17[/pmath].</p></blockquote>
+
+<p>Find the sum of all the primes below two million.</p>
+
+<p>My first attempt used brute force and testing primality using only previously found primes:</p>
+
+<pre><code>primes = []
+
+def is_prime(n):
+        if not (n &lt; 2 or any(n % x == 0 
+           for x in filter(lambda x: x &lt; math.ceil(n ** 2), primes))):
+                primes.append(n)
+                return True
+        return False
+
+sum_primes = 0
+n = 1   
+while n &lt; 2000000:
+    if (is_prime(n)):
+        sum_primes += n
+    n += 1  
+print sum_primes
+</code></pre>
+
+<p>It worked if you consider an execution time of over 7 minutes reasonable. Clearly a bad solution. So I decided to rethink it a bit and tried again. This time, I decided to use a little creative thinking. For every number I tested for primality, I took the time to mark its multiples as not primes (when I first test, say, 3, I already know that [pmath]6, 9, 12, &#8230; n * 3 &lt; 2000000[/pmath] will not be a prime numbers, so I don&#8217;t have to test their primality later.)</p>
+
+<pre><code>max_primes = 2000000
+numbers = [0] * max_primes
+
+def is_prime(n):
+        if n &lt;= 2:
+                return True
+        if numbers[n] == 1:
+                return False
+        c = 2
+        m = 0
+        while True:
+                m = n * c
+                if m &lt; max_primes:
+                        numbers[m] = 1
+                else:
+                        break
+                c+= 1
+
+        #if any(n % x == 0 for x in xrange(2, int(n ** 0.5) + 1)):
+        i = 2
+        while i &lt; int(n** 0.5 + 1):
+                if n % i == 0:
+                        return False
+                i += 1
+
+        numbers[n] = 1
+        return True
+
+def sum_primes():
+        soma = 0
+        for i in range (2, max_primes):
+                if is_prime(i):
+                        soma += i
+        return soma
+
+print sum_primes()
+</code></pre>
+
+<p>This is a much better algorithm and it gave the correct result in 54 seconds. Project Euler has a &#8220;one-minute rule&#8221;, which state that all its problems should be solvable &#8220;on a modestly powered computer in less than one minute,&#8221; which means the solution applies. Still, it&#8217;s a brute force solution and I wanted a better one.</p>
+
+<p>So today I picked my copy of <a href="http://www.amazon.com/gp/product/0201558025?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0201558025">Concrete Mathematics</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=0201558025" alt="" /> and read about primes. Honestly, I&#8217;ve been reading more about primes lately than I even thought I would.</p>
+
+<p>Anyways, Knuth&#8211;yes, I know the book has three authors, but I can&#8217;t help thinking of it as a Knuth book&#8211;talks about several strategies to test primality, but it also mentions sieve algorithms that are used to generate lists of prime numbers. Exactly what I wanted!</p>
+
+<pre><code>def prime_list(limit):
+        if limit &lt; 2:
+                return []
+        sieve_size = limit / 2
+        sieve = [True] * sieve_size
+
+        for i in range(0, int(limit ** 0.5) / 2):
+                if not sieve[i]:
+                        continue
+                for j in range((i * (i + 3) * 2) + 3, sieve_size, (i * 2) + 3):
+                        sieve[j] = False
+
+        primes = [2]
+        primes.extend([(i * 2) + 3 for i in range(0, sieve_size) if sieve[i]])
+
+        return primes
+
+print reduce(lambda x,y: x+y, prime_list(2000000))
+</code></pre>
+
+<p><em>Et voilà!</em> Correct result in 0.456s! The code is based on the description of the <a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a> found in Concrete Mathematics. Also interesting to note, my idea in the second algorithm above is actually the basis of this sieve algorithm, I was just thinking &#8220;backwards.&#8221;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-05T22:07:00-03:00" pubdate data-updated="true">Aug 5<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/code/'>Code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2010/08/05/euler-10-in-python/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2010/08/05/euler-10-in-python/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2010/08/03/euler-9-in-c/" title="Previous Post: Euler 9 in C">&laquo; Euler 9 in C</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2010/08/06/euler-10-in-cpp/" title="Next Post: Euler 10 in C++">Euler 10 in C++ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

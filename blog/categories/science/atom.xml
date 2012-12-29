@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Science | My Octopress Blog]]></title>
+  <link href="http://robteix.github.com/robteix/blog/categories/science/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/robteix/"/>
+  <updated>2012-12-29T10:54:28-03:00</updated>
+  <id>http://robteix.github.com/robteix/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Very cool video on the Space Shuttle Program]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program/"/>
+    <updated>2011-07-22T13:56:24-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program</id>
+    <content type="html"><![CDATA[<p>After three decades, the Space Shuttle is finally retired.  Check out the video below for a bit of history.  I thought the video so well done!  In a little over 8 minutes it gives you a feeling of how much happened already.  Also, stop to think about this for a minute: 30 FUCKING YEARS.</p>
+
+<p>Most nations who tried to launch payloads into space failed miserably and still haven't achieved it. And yet, THIRTY years ago the Shuttle started operation.</p>
+
+<p>What's next? NASA is now helping private enterprises develop the capability to fly people to the ISS so it can buy flights commercially. How long will it take? No one knows. And none of the companies is working on anything like the shuttle, so the future for now looks like it's going to be on heavy-rockets.</p>
+]]></content>
+  </entry>
+  
+</feed>

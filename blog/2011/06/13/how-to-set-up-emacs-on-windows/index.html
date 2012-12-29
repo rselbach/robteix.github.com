@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to set up Emacs on Windows - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Just so I have it documented somewhere for future reference, here&#8217;s how to quickly set GNU Emacs up on Windows. Download it from http://ftp.gnu &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Set Up Emacs on Windows</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-13T15:38:49-03:00" pubdate data-updated="true">Jun 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Just so I have it documented somewhere for future reference, here&#8217;s how to quickly set <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> up on Windows.</p>
+
+<ol>
+<li><p>Download it from <a href="http://ftp.gnu.org/gnu/emacs/windows/">http://ftp.gnu.org/gnu/emacs/windows/</a></p></li>
+<li><p>Unzip it to, say, C:\emacs or something like that</p></li>
+<li><p>Set the environment variable HOME to C:\emacs and include C:\emacs\bin to the PATH</p></li>
+<li><p>If you want to have a &#8221;<strong>Open with _G_NU Emacs</strong>&#8221; option on the context menu, just create a registry file (call it emacs.reg or whatever.reg) with the contents below and double-click it to import it into the registry.</p></li>
+</ol>
+
+
+<pre><code>REGEDIT4
+[HKEY_CLASSES_ROOT\*\shell]
+
+[HKEY_CLASSES_ROOT\*\shell\emacsmenu]
+@="Open with &amp;GNU; Emacs"
+
+[HKEY_CLASSES_ROOT\*\shell\emacsmenu\command]
+@="C:\\emacs\\bin\\runemacs.exe \"%1\""
+</code></pre>
+
+<p><em>Et voilà</em>! As well, for my preferred colour scheme, we need to use <strong>color-theme</strong> from <a href="http://www.nongnu.org/color-theme/">http://www.nongnu.org/color-theme/</a> and set it up in your .emacs file:</p>
+
+<pre><code>(add-to-list 'load-path "c:/emacs/.emacs.d")
+(require 'color-theme)
+(color-theme-initialize)
+(when (display-graphic-p)
+  (color-theme-subtle-hacker)
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-13T15:38:49-03:00" pubdate data-updated="true">Jun 13<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/tips/'>Tips</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2011/01/17/best-closing-line-ever/" title="Previous Post: Best closing line ever">&laquo; Best closing line ever</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2011/06/14/euler-9-in-go/" title="Next Post: Euler 9 in Go">Euler 9 in Go &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

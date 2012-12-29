@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Euler 7 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="So the other night I was a bit bored and decided to do something to pass the time. I first came across Project Euler a while ago, but had never gone &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2010/08/02/euler7/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Euler 7</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-02T16:27:58-03:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #7 statement is &#8211;</p>
+
+<blockquote><p>By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.</p></blockquote>
+
+<p>What is the 10001st prime number?</p>
+
+<p>It&#8217;s a straightforward problem to solve using brute force, but I went with a mixed approach doing some math instead.</p>
+
+<pre><code>#!/usr/bin/python
+import math
+
+def is_prime(n):
+    return not (n &lt; 2 or any(n % x == 0 for x in xrange(2, int(n ** 0.5) + 1)))
+
+currentMax =0
+primes = 1
+counter = 3
+
+while (primes &lt; 10001):
+    if (is_prime(counter)):
+        currentMax = counter
+        primes+=1
+        counter+=2
+
+print currentMax
+</code></pre>
+
+<p>I initially used a dumb brute-force which ended up running fast enough. But reading about primes, I came across this property by which if a number cannot be divided by any number smaller than [pmath]sqrt(n)[/pmath], it is a prime. That required significantly less tests to be performed inside is_prime, but then again, it had to perform a square root calculation for every number we need to test. In the end, the algorithm above performed slightly better (0.02s to be exact.)</p>
+
+<p><strong>Updated:</strong> Thanks to Eduardo Habkost for pointing out the fact that I had mistakenly pasted the wrong version of the script. I fixed the text to reflect that.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-02T16:27:58-03:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/code/'>Code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2010/08/02/euler7/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2010/08/02/euler7/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2010/05/21/por-que-ningum-consegue-comprar-carros-novos-na-argentina-2/" title="Previous Post: Why can’t people buy newer cars in Argentina?">&laquo; Why can’t people buy newer cars in Argentina?</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2010/08/03/euler-8/" title="Next Post: Euler 8">Euler 8 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

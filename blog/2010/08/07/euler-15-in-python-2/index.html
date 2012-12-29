@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Euler 15 in Python - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="This one isn&#8217;t even funny&#8230; Starting in the top left corner of a 2x2 grid, there are 6 routes (without backtracking) to the bottom right &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Euler 15 in Python</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-07T19:39:27-03:00" pubdate data-updated="true">Aug 7<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This one isn&#8217;t even funny&#8230;</p>
+
+<blockquote><p>Starting in the top left corner of a 2x2 grid, there are 6 routes (without backtracking) to the bottom right corner.</p></blockquote>
+
+<p><img src="http://robteix.com/wp-content/uploads/2010/08/p_015.gif" alt="" /></p>
+
+<p>How many routes are there through a 20x20 grid?</p>
+
+<p>Your first thought would be to generate the routes, but for a 20x20 grid, those amount to BILLIONS and you&#8217;d try to do it recursively too! Forget it.</p>
+
+<p>But if you have some CompSci-level math background, though, you&#8217;ll remember this one&#8211;reading <a href="http://www.amazon.com/gp/product/0321637135?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0321637135">The Art of Computer Programming, Vol. 4</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=0321637135" alt="" /> also helps. It&#8217;s a matter of combinatorics and if we take <em>w</em> for the width and <em>h</em> for the height, all we need to do is calculate,</p>
+
+<p>[latex size=&#8221;3&#8221;]\frac{(w + h)!}{w!h!}[/latex]</p>
+
+<p>and that&#8217;s it. I didn&#8217;t even write a program for this, instead using Python&#8217;s interactive shell, but just for the same of completeness, here&#8217;s a &#8220;program&#8221; to calculate the possibles paths in a 20x20 grid.</p>
+
+<pre><code>import math
+w = h = 20
+print math.factorial(w + h) / (math.factorial(w) * math.factorial(h))
+</code></pre>
+
+<p>That&#8217;s it.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-07T19:39:27-03:00" pubdate data-updated="true">Aug 7<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/code/'>Code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2010/08/06/euler-11-in-python/" title="Previous Post: Euler 11 in Python">&laquo; Euler 11 in Python</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2010/09/28/thate28099s-how-you-make-atheists/" title="Next Post: That's how you make atheists">That's how you make atheists &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

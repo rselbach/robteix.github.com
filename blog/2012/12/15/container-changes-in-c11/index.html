@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Container changes in C++11 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Container Changes in C++11</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-15T11:41:36-03:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find that containers have received some special love.</p>
+
+<h1>Initialization</h1>
+
+<p>C++ was long behind modern languages when it came to initializing containers. While you could do</p>
+
+<p>[cpp]int a[] = {1, 2, 3};[/cpp]</p>
+
+<p>for simple arrays, things tended to get more verbose for more complex containers:</p>
+
+<p>[cpp]
+vector<string> v;
+v.push_back(&#8220;One&#8221;);
+v.push_back(&#8220;Two&#8221;);
+v.push_back(&#8220;Three&#8221;);
+[/cpp]</p>
+
+<p>C++11 has introduced an easier, simpler way to initialize this:</p>
+
+<p>[cpp]
+vector<string> v = {&#8220;One&#8221;, &#8220;Two&#8221;, &#8220;Three&#8221;};
+[/cpp]</p>
+
+<p>The effects of the changes are even better for things like <strong>map</strong>s, which could get cumbersome quickly:</p>
+
+<p>[cpp]
+map&lt;string, vector<string> > m;
+vector<string> v1;
+v1.push_back(&#8220;A&#8221;);
+v1.push_back(&#8220;B&#8221;);
+v1.push_back(&#8220;C&#8221;);</p>
+
+<p>vector<string> v2;
+v2.push_back(&#8220;A&#8221;);
+v2.push_back(&#8220;B&#8221;);
+v2.push_back(&#8220;C&#8221;);</p>
+
+<p>m[&#8220;One&#8221;] = v1;
+m[&#8220;Two&#8221;] = v2;
+[/cpp]</p>
+
+<p>This can now be expressed as:</p>
+
+<p>[cpp]
+map&lt;string, vector<string>> m = One,</p>
+
+<pre><code>                             {"Two", {"Z", "Y", "X"}}};
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Much simpler and in line with most modern languages. As an aside, there&#8217;s another change in C++11 that would be easy to miss in the code above. The declaration</p>
+
+<p>[cpp]map&lt;string, vector<string>> m;[/cpp]</p>
+
+<p>was illegal until now due to >> always being evaluated to the right-shift operator; a space would always be required, like</p>
+
+<p>[cpp]map&lt;string, vector<string> > m[/cpp]</p>
+
+<p>No longer the case.</p>
+
+<h1>Iterating</h1>
+
+<p>Iterating through containers was also inconvenient. Iterating the simple <em>vector v</em> above:</p>
+
+<p>[cpp]
+for (vector<string>::iterator i = v.begin();</p>
+
+<pre><code> i != v.end(); i++)
+cout &lt;&lt; i &lt;&lt; endl;[/cpp]
+</code></pre>
+
+<p>Modern languages have long had some <em>foreach</em> equivalent that allowed us easier ways to iterate through these structures without having to explicitly worry about iterators types. C++11 is finally catching up:</p>
+
+<p>[cpp]
+for (string s : v)</p>
+
+<pre><code>cout &lt;&lt; s &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>As well, C++11 brings in a new keyword, <em>auto</em>, that will evaluate to a type in compile-type. So instead of</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++) {
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>we can now write</p>
+
+<p>[cpp]
+for (auto i = m.begin(); i != m.end(); i++) {
+[/cpp]</p>
+
+<p>and <em>auto</em> will evaluate to <em>map&lt;string, vector<string>>::iterator</em>.</p>
+
+<p>Combining these changes, we move from the horrendous</p>
+
+<p>[cpp]
+for (map&lt;string, vector<string> >::iterator i = m.begin();</p>
+
+<pre><code> i != m.end(); i++)
+for (vector&lt;string&gt;::iterator j = i-&gt;second.begin();
+     j != i-&gt;second.end(); j++)
+    cout &lt;&lt; i-&gt;first &lt;&lt; ': ' &lt;&lt; *j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>to the much simpler</p>
+
+<p>[cpp]
+for (auto i : m)</p>
+
+<pre><code>for (auto j : i.second)
+    cout &lt;&lt; i.first &lt;&lt; ': ' &lt;&lt; j &lt;&lt; endl;
+</code></pre>
+
+<p>[/cpp]</p>
+
+<p>Not bad.</p>
+
+<p>C++11 support varies a lot from compiler to compiler, but all of the changes above are already supported in the latest versions of GCC, LLVM, and MSVC compilers.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-15T11:41:36-03:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2012/11/19/for-is-evil-or-something/" title="Previous Post: FOR is evil or something">&laquo; FOR is evil or something</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="So the other night I was a bit bored and decided to do something to pass the time. I first came across Project Euler a while ago, but had never gone &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/page/5/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/08/03/euler-4/">Euler 4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:26:51-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #4 statement is &#8211;</p>
+
+<blockquote><p>A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.</p></blockquote>
+
+<p>Find the largest palindrome made from the product of two 3-digit numbers.</p>
+
+<p>And here&#8217;s the solution.</p>
+
+<pre><code>def int_to_list(number):
+  return map(int, str(number))
+
+def is_palindrome(number):
+  local_list = int_to_list(number)
+  return local_list == list(reversed(local_list))
+
+pal = 0
+if __name__ == "__main__":
+  for i in range(100,1000):
+        for j in range(100,1000):
+                if is_palindrome(i * j):
+                        print "%d * %d = %d"%(i, j, i*j)
+                        if i * j &gt; pal:
+                                pal = i * j
+
+  print pal
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/08/03/euler-3/">Euler 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:24:39-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #3 statement is &#8211;</p>
+
+<blockquote><p>The prime factors of 13195 are 5, 7, 13 and 29.</p></blockquote>
+
+<p>What is the largest prime factor of the number 600851475143 ?</p>
+
+<p>My solution is really ugly and is basically dumb-, brute-force.</p>
+
+<pre><code>#!/usr/bin/python
+
+import math
+
+top_number = 600851475143
+
+def is_divisor(divisor):
+        return top_number % divisor == 0
+
+def is_prime(divided):
+        divisor = 3
+        sqrt_divided = math.sqrt(divided)
+        if divided == 1:
+                return true
+        while divisor &lt;= sqrt_divided:
+                if divided == divisor:
+                        return True
+                elif divided % divisor == 0:
+                        return False
+                else:
+                        divisor += 2
+        return True
+
+def main():
+        count = 3
+        go_to = top_number
+
+        first_list =[]
+        while count &lt;= go_to:
+                if is_divisor(count):
+                        first_list.append(count)
+                        go_to = top_number / count
+                        first_list.append(go_to)
+
+                count += 2
+
+        second_list = map(is_prime, first_list)
+        print "%s" % max(zip(second_list, first_list))[-1]
+
+if __name__ == "__main__":
+        main()
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/08/03/euler-8/">Euler 8</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T09:50:50-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #8 statement is &#8211;</p>
+
+<blockquote><p>Find the greatest product of five consecutive digits in the 1000-digit number.</p></blockquote>
+
+<p>73167176531330624919225119674426574742355349194934
+96983520312774506326239578318016984801869478851843
+85861560789112949495459501737958331952853208805511
+12540698747158523863050715693290963295227443043557
+66896648950445244523161731856403098711121722383113
+62229893423380308135336276614282806444486645238749
+30358907296290491560440772390713810515859307960866
+70172427121883998797908792274921901699720888093776
+65727333001053367881220235421809751254540594752243
+52584907711670556013604839586446706324415722155397
+53697817977846174064955149290862569321978468622482
+83972241375657056057490261407972968652414535100474
+82166370484403199890008895243450658541227588666881
+16427171479924442928230863465674813919123162824586
+17866458359124566529476545682848912883142607690042
+24219022671055626321111109370544217506941658960408
+07198403850962455444362981230987879927244284909188
+84580156166097919133875499200524063689912560717606
+05886116467109405077541002256983155200055935729725
+71636269561882670428252483600823257530420752963450</p>
+
+<p>This is another very straightforward problem. My solution &#8211;</p>
+
+<pre><code>number = '73167176531330624919225119674426574742355349194934\
+96983520312774506326239578318016984801869478851843\
+85861560789112949495459501737958331952853208805511\
+12540698747158523863050715693290963295227443043557\
+66896648950445244523161731856403098711121722383113\
+62229893423380308135336276614282806444486645238749\
+30358907296290491560440772390713810515859307960866\
+70172427121883998797908792274921901699720888093776\
+65727333001053367881220235421809751254540594752243\
+52584907711670556013604839586446706324415722155397\
+53697817977846174064955149290862569321978468622482\
+83972241375657056057490261407972968652414535100474\
+82166370484403199890008895243450658541227588666881\
+16427171479924442928230863465674813919123162824586\
+17866458359124566529476545682848912883142607690042\
+24219022671055626321111109370544217506941658960408\
+07198403850962455444362981230987879927244284909188\
+84580156166097919133875499200524063689912560717606\
+05886116467109405077541002256983155200055935729725\
+71636269561882670428252483600823257530420752963450'
+
+max_prod = 0
+for i in range(1, len(number) - 4):
+        prod = reduce(lambda x,y: x*y, [int(s) for s in number[i:i+5]])
+        if prod &gt; max_prod:
+                max_prod = prod
+
+print max_prod
+</code></pre>
+
+<p>This ran in 0m0.023s.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/08/02/euler7/">Euler 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-02T16:27:58-03:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across <a href="http://projecteuler.net">Project Euler</a> a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #7 statement is &#8211;</p>
+
+<blockquote><p>By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.</p></blockquote>
+
+<p>What is the 10001st prime number?</p>
+
+<p>It&#8217;s a straightforward problem to solve using brute force, but I went with a mixed approach doing some math instead.</p>
+
+<pre><code>#!/usr/bin/python
+import math
+
+def is_prime(n):
+    return not (n &lt; 2 or any(n % x == 0 for x in xrange(2, int(n ** 0.5) + 1)))
+
+currentMax =0
+primes = 1
+counter = 3
+
+while (primes &lt; 10001):
+    if (is_prime(counter)):
+        currentMax = counter
+        primes+=1
+        counter+=2
+
+print currentMax
+</code></pre>
+
+<p>I initially used a dumb brute-force which ended up running fast enough. But reading about primes, I came across this property by which if a number cannot be divided by any number smaller than [pmath]sqrt(n)[/pmath], it is a prime. That required significantly less tests to be performed inside is_prime, but then again, it had to perform a square root calculation for every number we need to test. In the end, the algorithm above performed slightly better (0.02s to be exact.)</p>
+
+<p><strong>Updated:</strong> Thanks to Eduardo Habkost for pointing out the fact that I had mistakenly pasted the wrong version of the script. I fixed the text to reflect that.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/05/21/por-que-ningum-consegue-comprar-carros-novos-na-argentina-2/">Why Can’t People Buy Newer Cars in Argentina?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-05-21T11:57:41-03:00" pubdate data-updated="true">May 21<span>st</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is part of <a href="/robteix/?cat_ID=239">a series of posts</a> about Argentina and the City of Cordoba. These are little facts I wish I knew about before I came here as an expat.</p>
+
+<p>One of the first things I noticed when I arrived in Cordoba, Argentina, was the amount of old cars going around. And I’m not talking about 10-year-old cars, I’m talking about 30 years or so!</p>
+
+<p>You can really find some rarities such as the Citroën 3cv happily racing around town all the time. As a consequence of all that, you can also find a disproportionate amount of cars stalled on the streets, people trying to do something under the hood. It’s really amazing how many broken down cars you’ll see every day.</p>
+
+<p><a href="http://robteix.com/wp-content/uploads/2010/05/IMG_01041.jpg"><img src="http://robteix.com/wp-content/uploads/2010/05/IMG_0104_thumb1.jpg" alt="Citroën 3cv" /></a></p>
+
+<p>I used to wonder why that was. Now I understand.</p>
+
+<p>There is no credit in Argentina. Well, technically there is, but it’s so expensive that it’s as if it doesn’t exist. That’s why people normally need to buy stuff with cash upfront. Cars, of course, happen to be expensive and most people can’t save enough to buy newer cars like that. The same is true for several other goods, but cars happen to be the most visible symptom.</p>
+
+<p>From time to time, coincidently around election time, the federal government creates some credit program. These programs are temporary and limited in the number of people who can apply.</p>
+
+<p>And then there’s a second problem—informality. In order to avoid taxes and benefits, most companies hire people either with no documentation or with phoney pay information, e.g. if someone’s salary is, say, $1,000, the companies would register the employee as being paid $250 instead, thus being able to pay less taxes.</p>
+
+<p>And thus even with those government credit programs, most people can’t even qualify as they can’t show enough income.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/03/26/how-can-i-get-rid-of-not-so-old-books/">How Can I Get Rid of (Not So) Old Books?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-26T13:02:37-03:00" pubdate data-updated="true">Mar 26<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m not a big believer in keeping books forever, even though I do keep some. Most books, however, I just want to read and pass along.</p>
+
+<p>It just so happens that I have a ton of books that I want to get rid of. I could throw them away, but it somehow feels wrong. Also, I could donate them to some school, but considering where I live now, I assume this too will bring me one hell of a bureaucratic nightmare. Also, most of the books are either in English or Portuguese, so schools would probably not use them anyway.</p>
+
+<p>With very few exceptions, all the books are either mathematics, economics, programming, or scifi. I thought I&#8217;d simply take the books to the office and give them away to anyone who&#8217;d like to have them.</p>
+
+<p>But then my wife gave me an idea. Instead of taking the books and giving them outright, I started sending random emails to a mailing list with geeky questions, often related to the book topic. Whoever answers correctly first, gets the book.</p>
+
+<p>This worked amazingly well.</p>
+
+<ol>
+<li><p>It created a fun environment for all involved. People actually want to get the answers right. Others learn by, well, learning the winning answer.</p></li>
+<li><p>For books that normally no one would care about, the fact that you have to win to get it suddenly adds value. It&#8217;s no longer a book no one wants, it now is an award.</p></li>
+<li><p>All of a sudden everybody loves me ;)</p></li>
+</ol>
+
+
+<p>Had I just announced I had a bunch of books, people would get by, pick a few they cared about and that would have been it. No fun. So every now and then I take a few books from home and then give them away to quiz winners.</p>
+
+<p>It&#8217;s actually lots of fun.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/03/26/why-do-things-take-so-long-in-argentina/">Why Do Things Take So Long in Argentina?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-26T03:12:20-03:00" pubdate data-updated="true">Mar 26<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Coincidences have a way of catching one’s attention, haven’t they? Yesterday I was riding the bus home with a colleague from work. I was telling him how my life here wasn’t perfect because I couldn’t buy a car. It turns out that I would need to hold a national ID card (called DNI) to purchase a car. Actually, one needs to obtain the DNI to do pretty much anything like opening a bank account. Interestingly enough, you need the DNI for small, simple tasks like ordering cable TV, phone lines, Internet access, etc, but one can easily buy a house – or many houses – without the DNI.</p>
+
+<p>The process of obtaining the DNI is simple. If you’re a citizen, your parents will have used your birth certificate to get your first DNI, which is mandatory from a very early age. Over the years, you are required to update your DNI when you reach certain ages (8, 16, 25, if I’m not mistaken) and everytime you change address. All you need is the original DNI and some address verification and you’re done. If you’re an expat like myself, you need your passport, your resident visa, and some address verification. Again, very simple. You go, apply and wait for the document to be ready. And that’s where the problem resides… in parts of the country, the DNI takes <em>years</em> to be ready. Even in Buenos Aires, it can take more than one year for your DNI to be ready for pick-up.</p>
+
+<p>Now how could such a simple and yet much needed document take so long to be manufactured?</p>
+
+<p>So there I was, talking to this colleague about all of this. He told me that when he had to change his at 16, it took two years. And he’s a national. He told me it’s usually because government workers don’t have the incentive to work harder. He’s probably right, as this is the case everywhere else in the world. Still, this might explain why a simple document can take 2-3 weeks to be created, but not years. When I stepped out of my ride, I bumped into a girl who lives in our building. She told me she was frustrated because she had lost her DNI a couple of years back and the new one wasn’t ready yet. She had just went to the Identification Office to check. Coincidences… I then told her about my story and she told me so other tales of horror and I shared some of my own, like when I needed a document notarized and it took a month to do it. And that was it.</p>
+
+<p>Fast forward a day.</p>
+
+<p>My wife is currently having classes and she asked me to get her a textbook she needs. I went to this bookstore on my way to work. I strolled into the store and worked my way to the textbooks section and quickly found the one my wife needed. I picked it up and headed to the checkout, content that I wouldn’t have to hunt for the book in other stores. I held the book and the cash in my hand. “I’d like to take this” I told the lady at checkout, who in turn looks around and goes “Did you pick a number?”</p>
+
+<p><em>What. Fucking. Number.</em></p>
+
+<p>“What number?” I asked, confused. She then pointed me to this little thingamajig near the entrance. “I’m sorry, I don’t get it…” And then she half-mockingly explained to me that I had to pick the number and wait my turn for a salesperson to help me. “But I don’t need any help. I have the book and the money right here!”</p>
+
+<p>No use. I had to pick a number and wait for one of the two saleswomen to call it. So there I was, holding the book I wanted, with the cash to pay for it, standing by the checkout – where the lady was doing nothing by the way – and waiting for someone to “help me.” In any half-civilized place our business would have been over by now. The store would have made money and I would be on my way to work. Simple.</p>
+
+<p>“<em>Twenty!!!!!!!”</em> shouted a lady. It was my number. So I went to her – looking pissed, I’m sure. I told her I’d like to please take this textbook. “Oh, certainly!” So she goes to a computer terminal and asks if I’m paying with a credit card. I wave the cash and say “<em>efectivo” </em>to make sure she gets it. Then she asks what the book is for. <em>For reading, duh!</em> I tell her that it’s for a course, then she types something and asks which school. “Lady, sorry but all I want to to take this textbook with me. I have the cash right here. I’ve had both the book and the cash in my hands for like 15 minutes already. All that’s missing is for that lady at checkout to get the money so I can get out of here.” And yes, I was pissed and I didn’t really sounded friendly and half the store was staring at me. She said apologetically, “I’m sorry, but I need to register who purchased the book and where it will be used.”</p>
+
+<p><em>Why?!?!</em></p>
+
+<p>“Lady, seriously, I don’t want to give any more information. I want to buy this book and that’s it. You either take my money or not. Your choice. Just let me know so I can get out of here.”</p>
+
+<p>The whole store was following our exchange. Everyone surely thinking that I was the mean foreigner who’s going to explore them and steal their water (it’s a local thing.) She told me to go to the checkout I had been to 15 minutes earlier. The lady took my money and asked if I wanted a receipt. D-U-H!</p>
+
+<p>So I realized it has to be a cultural thing. Bureaucracy is so entrenched in their lives that they don’t even realize it anymore. They just think it’s the best way of doing things. The problem I had to get a document notarized is a perfect example. I went to a notary, who then notarized my document. It took two days, which is already ridiculous, but still… the problem is that after he notarizes it, he has to send the document to the Notary Guild Office so that they in turn can verify that the notarizing notary was in fact a certified notary and that the notarization was correctly notarized. I am not even kidding.</p>
+
+<p>Argentina has a lot of great things. Things that I actually love. But in terms of bureaucracy, it’s really, really a mess. And the very people have been “infected” by it so that they are bureaucratic at heart. It’s actually really sad.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/03/16/thank-you-google/">Thank You, Google.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-16T02:33:29-03:00" pubdate data-updated="true">Mar 16<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dear Mr Google,</p>
+
+<p>thank you for spoiling my Google Reader experience. Since you&#8217;ve launched Buzz, Reader has been impossible for me to use. Great job!</p>
+
+<p>-rst.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/02/16/long-story/">Long Story&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-16T03:11:24-03:00" pubdate data-updated="true">Feb 16<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>4EYZSRZTBEUQ</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/robteix/blog/2010/01/27/and-apple-finally-did-it/">And Apple Finally Did It</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-27T12:50:53-03:00" pubdate data-updated="true">Jan 27<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://robteix.com/wp-content/uploads/2010/01/image_thumb11.png" alt="image" /></p>
+
+<p><em>That&#8217;s it!</em> The day we&#8217;ve all been waiting for finally arrived. The hype was really, well, hypey. I actually read somewhere a guy saying that this would be a day he&#8217;d be able to talk about with his grand-kids one day. <em>What. The. Fuck. People!</em> Seriously?</p>
+
+<p>Now to be honest I was a bit hopeful, too. I mean, since that wonderful iPhone announcement a few years ago, we&#8217;re always kind of waiting for when Apple is going to do its thing again. You know, <em>change the friggin’ world!</em></p>
+
+<p>As it turned out, it <em>was</em> a historic announcement, just not the way people expected it to be. It was history because Apple finally did it: <em>it disappointed</em>.</p>
+
+<p>I&#8217;m not saying the iPad – <em>dude! iPad? Really, Steve?</em> &#8211; anyway, I&#8217;m not saying the iPad is bad in and on itself. It’s a nice device. It&#8217;s just not what I was expecting. I was expecting to see something <em>revolutionary</em> and that the iPad is not. It is essentially a big iPod touch. <em>It. Doesn&#8217;t. Even. Cure. Cancer!</em></p>
+
+<p>I confess I was a lot more interested in an update to the iPhone OS and a new iLife that whatever tablet Apple was going to announce. I intentionally decided not to buy into the whole hype of the &#8220;iSlate.&#8221; I thought it was going to be cool but unaffordable, which it turned out to be. I mean, $500 for an iPod touch? And the 3G model that&#8217;s essencially an iPhone without the phone? <em>It&#8217;s $829 for an i!</em></p>
+
+<p>With nothing new for the iPhone and no new iLife, the whole announcement was a non-event, which means it was a disappointment. A utter <em>meh</em>.</p>
+
+<h1>apple #fail</h1>
+
+<p>Move along, fanbois, nothing to see here.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/robteix/blog/page/6/">&larr; Older</a>
+    
+    <a href="/robteix/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/robteix/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife&#8217;s bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people&#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

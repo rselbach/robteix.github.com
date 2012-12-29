@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Euler 9 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="So the other night I was a bit bored and decided to do something to pass the time. I first came across Project Euler a while ago, but had never gone &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://robteix.github.com/robteix/blog/2010/08/03/euler-9/">
+  <link href="/robteix/favicon.png" rel="icon">
+  <link href="/robteix/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/robteix/javascripts/modernizr-2.0.js"></script>
+  <script src="/robteix/javascripts/ender.js"></script>
+  <script src="/robteix/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/robteix/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/robteix/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/robteix/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:robteix.github.com/robteix" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/robteix/">Blog</a></li>
+  <li><a href="/robteix/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Euler 9</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:45:17-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>So the other night I was a bit bored and decided to do something to pass the time. I first came across Project Euler a while ago, but had never gone further than problem #1. Boredom is a great motivator and I went through problems #2 thru #9 last night and I decided to post my solutions in search of better ones. Feel free to comment with your suggestions.</p>
+
+<p>Project Euler&#8217;s Problem #9 statement is &#8211;</p>
+
+<blockquote><p>A Pythagorean triplet is a set of three natural numbers, $latex a &lt;  b &lt;  c$, for which,</p></blockquote>
+
+<p>[latex]a<sup>2</sup> + b<sup>2</sup> = c<sup>2[/latex]</sup></p>
+
+<p>For example, $latex 3<sup>2</sup> + 4<sup>2</sup> = 9 + 16 = 25 = 5<sup>2$.</sup></p>
+
+<p>There exists exactly one Pythagorean triplet for which [pmath]a + b + c = 1000[/pmath].</p>
+
+<p>Find the product [pmath]abc[/pmath].</p>
+
+<p>Butt ugly, super slow, brute-force solution:</p>
+
+<pre><code>from sys import exit
+
+def is_triplet(a, b, c):
+        if a &lt; b and b &lt; c:
+                return a ** 2 + b ** 2 == c ** 2
+
+for a in range(0, 1000):
+        for b in range(a + 1, 1000):
+                for c in range(b + 1, 1000):
+                        if a + b + c == 1000 and is_triplet(a, b, c):
+                                print a * b * c
+                                exit(0)
+</code></pre>
+
+<p>I&#8217;ll have to rethink this, as it&#8217;s <em>really</em> inefficient. As it is, it runs in 18.034s!</p>
+
+<p><strong>Updated:</strong> <a href="/robteix/?p=1103">take a look at another take at this problem and algorithm</a>.</p>
+
+<p><strong>Updated 2010/08/04:</strong> <a href="http://robteix.com/2010/08/euler-9-in-c/#comment-243">Gustavo Niemeyer pointed</a> an obvious optimization to the algorithm above (written in C)&#8211;the innermost loop is unnecessary. I rewrote it in Python to see the difference:</p>
+
+<pre><code>from sys import exit
+
+def is_triplet(a, b, c):
+        return (a ** 2 + b ** 2 == c ** 2)
+
+for a in range(1, 1000):
+        for b in range(a + 1, (1000 - a) / 2):
+                c = 1000 - a - b
+                if is_triplet(a, b, c):
+                        print "%d * %d * %d = %d" % (a, b, c, a * b * c)
+</code></pre>
+
+<p>From 18s to 0.076s. As well, following Eduardo Habkost&#8217;s suggestion, I used psyco and execution time went down to 0.023s.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-03T14:45:17-03:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/robteix/blog/categories/code/'>Code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://robteix.github.com/robteix/blog/2010/08/03/euler-9/" data-via="" data-counturl="http://robteix.github.com/robteix/blog/2010/08/03/euler-9/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/robteix/blog/2010/08/03/euler-6/" title="Previous Post: Euler 6">&laquo; Euler 6</a>
+      
+      
+        <a class="basic-alignment right" href="/robteix/blog/2010/08/03/euler-9-in-c/" title="Next Post: Euler 9 in C">Euler 9 in C &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/12/15/container-changes-in-c11/">Container changes in C++11</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/19/for-is-evil-or-something/">FOR is evil or something</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/11/2114/">Missus Lady Wife's bday</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/all-those-black-people/">All those black people...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/robteix/blog/2012/11/10/quote-of-the-day/">Quote of the Day</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

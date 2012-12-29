@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tips | My Octopress Blog]]></title>
+  <link href="http://robteix.github.com/robteix/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/robteix/"/>
+  <updated>2012-12-29T10:54:28-03:00</updated>
+  <id>http://robteix.github.com/robteix/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rolling out your own Fusion Drive with the recovery partition]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
+    <updated>2012-11-09T08:18:34-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
+    <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM.png"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM-580x493.png" alt="disk utility showing Fusion Drive" /></a></p>
+
+<p>My Macbook Pro has two disks, an HDD and an SSD, each of 240GB or so. With the details of Apple's Fusion Drive coming out I decided to do what any reasonable geek would do to their production computer: I've decided to implement my own untested, highly experimental and barely understood Fusion Drive.</p>
+
+<p>One of the things that initially put me off doing this was that according to the 3,471,918 tutorials that have popped up in the last 10 minutes would cause me to lose my Mountain Lion recovery partition because these partitions are not supported in a Fusion drive. Turns out this is not exactly true.</p>
+
+<p>Fusion Drive is just a marketing term for a what essentially is a CoreStorage logical volume spanning an SSD <em>and</em> an HDD. And although you cannot have the recovery partition inside a CS logical volume, it doesn't mean you can't have <em>both</em> a recovery partition <em>and</em> a Fusion Drive at the same time. It's all in the <a href="http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man8/diskutil.8">diskutil man page</a>, by the way:</p>
+
+<blockquote><p>Create a CoreStorage logical volume group. The disks specified will become the (initial) set of physical volumes; more than one may be specified. <strong>You can specify partitions</strong> (which will be re-typed to be Apple_CoreStorage) or whole-disks (which will be partitioned as GPT and will contain an Apple_CoreStorage partition). The resulting LVG UUID can then be used with createVolume below. All existing data on the drive(s) will be lost. Ownership of the affected disk is required.</p></blockquote>
+
+<p>What matters is what's in bold above: we're not limited to using whole disks. So here's what I did.</p>
+
+<p>I rebooted my system and held the <strong>option</strong> key so I could select my recovery partition as the start up disk. Once the OSX recovery started up, I launched a terminal to do the dirty work.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>From this I noted two things: (a) the main SSD partition (the one holding my OSX and that sited by my recovery partition) and (b) the disk name of my HDD. They were respectively <em>disk0s2</em> and <em>disk1</em> in my case, but they'll very likely be different for you. Then the magic begins.</p>
+
+<pre><code>&lt;code&gt;diskutil cs create "Fusion Drive" disk0s2 disk1
+&lt;/code&gt;
+</code></pre>
+
+<p>(For crying out loud, you need to change disk0s2 and disk1 for whatever makes sense on your system!)</p>
+
+<p>That created the coreStorage logical volume. Then I listed it all again to note what the new logical volume UUID was.</p>
+
+<pre><code>&lt;code&gt;diskutil list
+&lt;/code&gt;
+</code></pre>
+
+<p>The UUID is a long number identifier like F47AC10B-58CC-4372-A567-0E02B2C3D479. You'll need that one next to actually create the volume where you'll be installing your system.</p>
+
+<pre><code>&lt;code&gt;diskutil coreStorage createVolume F47AC10B-58CC-4372-A567-0E02B2C3D479 jhfs+ "Macbook FD" 100%
+&lt;/code&gt;
+</code></pre>
+
+<p>The command above will create a volume named "Macbook FD" using 100% of the logical volume we had created earlier.</p>
+
+<p>I then restored my Time Machine backup and that's it.</p>
+
+<p><strong>Update:</strong> Note that after this process, the Recovery partition will still be present and things that require it (such as Find My Mac) will work fine. Some people correctly pointed out, however, that you can no longer boot from the recovery partition by using the menu from holding ⌥ (<strong>option)</strong> during boot. I'm not sure why that is, but fear not, it will still boot normally from pressing <strong>⌘R (command + R)</strong>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to set up Emacs on Windows]]></title>
+    <link href="http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows/"/>
+    <updated>2011-06-13T15:38:49-03:00</updated>
+    <id>http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows</id>
+    <content type="html"><![CDATA[<p>Just so I have it documented somewhere for future reference, here's how to quickly set <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> up on Windows.</p>
+
+<ol>
+<li><p>Download it from <a href="http://ftp.gnu.org/gnu/emacs/windows/">http://ftp.gnu.org/gnu/emacs/windows/</a></p></li>
+<li><p>Unzip it to, say, C:\emacs or something like that</p></li>
+<li><p>Set the environment variable HOME to C:\emacs and include C:\emacs\bin to the PATH</p></li>
+<li><p>If you want to have a "<strong>Open with _G_NU Emacs</strong>" option on the context menu, just create a registry file (call it emacs.reg or whatever.reg) with the contents below and double-click it to import it into the registry.</p></li>
+</ol>
+
+
+<pre><code>REGEDIT4
+[HKEY_CLASSES_ROOT\*\shell]
+
+[HKEY_CLASSES_ROOT\*\shell\emacsmenu]
+@="Open with &amp;GNU; Emacs"
+
+[HKEY_CLASSES_ROOT\*\shell\emacsmenu\command]
+@="C:\\emacs\\bin\\runemacs.exe \"%1\""
+</code></pre>
+
+<p><em>Et voilà</em>! As well, for my preferred colour scheme, we need to use <strong>color-theme</strong> from <a href="http://www.nongnu.org/color-theme/">http://www.nongnu.org/color-theme/</a> and set it up in your .emacs file:</p>
+
+<pre><code>(add-to-list 'load-path "c:/emacs/.emacs.d")
+(require 'color-theme)
+(color-theme-initialize)
+(when (display-graphic-p)
+  (color-theme-subtle-hacker)
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
