@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Atheism | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/atheism/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Atheism | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/atheism/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Best closing line ever]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/01/17/best-closing-line-ever/"/>
+    <link href="http://robteix.github.com/blog/2011/01/17/best-closing-line-ever/"/>
     <updated>2011-01-17T14:30:18-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/01/17/best-closing-line-ever</id>
+    <id>http://robteix.github.com/blog/2011/01/17/best-closing-line-ever</id>
     <content type="html"><![CDATA[<p>I didn't get to watch the Golden Globes ceremony. To be honest, it's not really the kind of show I enjoy. But completely by chance I tuned in right at the very end, when host Ricky Gervais said the show was over and started his own thanks. And he closed with --</p>
 
 <blockquote><p>And thank you god for making me an atheist.</p></blockquote>
@@ -36,9 +36,9 @@
   
   <entry>
     <title type="html"><![CDATA[That's how you make atheists]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2010/09/28/thate28099s-how-you-make-atheists/"/>
+    <link href="http://robteix.github.com/blog/2010/09/28/thate28099s-how-you-make-atheists/"/>
     <updated>2010-09-28T12:44:26-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2010/09/28/thate28099s-how-you-make-atheists</id>
+    <id>http://robteix.github.com/blog/2010/09/28/thate28099s-how-you-make-atheists</id>
     <content type="html"><![CDATA[<p>A recent Pew poll in the US shows that <a href="http://www.google.com/hostednews/ap/article/ALeqM5jhxJz5nrEDuOlI9AR5QUtnImO44AD9IGMHQO3?docId=D9IGMHQO3">agnostics and atheists seem to know more about religion than the rest of the population</a>. That's not really a big surprise as previous similar polls shows similar results.</p>
 
 <p>But even if it's not a big surprise, it can still seem strange to many. To me, the best explanation I've been able to come to is beautifully summarized by American Atheists' president Dave Silverman, for <a href="http://www.nytimes.com/2010/09/28/us/28religion.html?_r=1">the New York Times</a>:</p>

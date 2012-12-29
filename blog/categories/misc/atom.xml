@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Misc | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/misc/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Misc | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Not a-ok]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok/"/>
+    <link href="http://robteix.github.com/blog/2012/11/08/not-a-ok/"/>
     <updated>2012-11-08T14:48:39-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok</id>
+    <id>http://robteix.github.com/blog/2012/11/08/not-a-ok</id>
     <content type="html"><![CDATA[<p>I have a little confession to make: our family is going through a rough patch. Both my wife and I are having problems. No, not between us. And both are experiencing very different sorts of problems. But the happening-at-the-same-time complicates the one-supports-the-other thing.</p>
 
 <p>And to compound to that, I have been sick.</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[Off-the-something drama]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama/"/>
+    <link href="http://robteix.github.com/blog/2012/10/22/off-the-something-drama/"/>
     <updated>2012-10-22T15:06:50-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama</id>
+    <id>http://robteix.github.com/blog/2012/10/22/off-the-something-drama</id>
     <content type="html"><![CDATA[<p>Right in the very first issue of <a href="http://the-magazine.org">The Magazine</a>, I found an interesting article called <a href="http://the-magazine.org/1/baseball-misfits">Baseball Misfits</a> by Jason Snell. In it, Jason talks about the great divide that seems to exist between the geeks who love sports and those who despise them.</p>
 
 <p>I am no stranger to that. I am one of the geeks who dig sports, I know both kinds and, exactly as mentioned in Jason's article, I have experienced the <em>wrath</em> from the geeks who don't dig sports when one who does happens to mention the subject.</p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[In which Rob gets app.net]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net/"/>
+    <link href="http://robteix.github.com/blog/2012/08/19/in-which-rob-gets-app-net/"/>
     <updated>2012-08-19T20:48:24-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net</id>
+    <id>http://robteix.github.com/blog/2012/08/19/in-which-rob-gets-app-net</id>
     <content type="html"><![CDATA[<p>I got myself an app.net account (<a href="https://alpha.app.net/robteix">@robteix</a>) a couple of days ago. [Cue the <a href="http://ihave50dollars.com/">ihave50dollars.com</a> jokes.]  Still haven't really used it a lot but am starting to enjoy the discussions about the API development.</p>
 
 <p>I joined mostly to support the idea—which I must admit is pretty insane. But what would the world be without insane ideas? ADN will <strong>never</strong> be Twitter or Facebook, but maybe it doesn't need to be. Maybe it really only needs to be a same environment for people like me. I like it.</p>
@@ -73,9 +73,9 @@
   
   <entry>
     <title type="html"><![CDATA[John Scalzi's Redshirts]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts/"/>
+    <link href="http://robteix.github.com/blog/2012/07/15/john-scalzis-redshirts/"/>
     <updated>2012-07-15T10:59:28-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts</id>
+    <id>http://robteix.github.com/blog/2012/07/15/john-scalzis-redshirts</id>
     <content type="html"><![CDATA[<p>Just finished reading John Scalzi's <a href="http://www.amazon.com/gp/product/B0079XPUOW/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0079XPUOW">Redshirts</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=B0079XPUOW" alt="" />. It's funny, sometimes silly, but it's also a page turner. I read it in a few hours, just could not put it down. And Scalzi manages to make something that looks like it's obvious and then give it a twist and another and then another until you go, <em>oh that's the thing...</em> It is definitely not hard scifi! I'd describe it more as a satyrical work making fun—albeit in a positive way!—of scifi. I loved it.</p>
 
 <p>Oh, and it's totally <em>meta</em>!</p>
@@ -84,9 +84,9 @@
   
   <entry>
     <title type="html"><![CDATA[My need for anonymity]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity/"/>
+    <link href="http://robteix.github.com/blog/2011/08/04/my-need-for-anonymity/"/>
     <updated>2011-08-04T16:54:38-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity</id>
+    <id>http://robteix.github.com/blog/2011/08/04/my-need-for-anonymity</id>
     <content type="html"><![CDATA[<p><img src="http://robteix.com/wp-content/uploads/2011/08/abhishekb-4S22MEjXDA0-hd-580x389.jpg" alt="" /></p>
 
 <p>Much has been said about the pros and cons of anonymity lately, prompted by Google+ TOS which require the use of one’s real name. No pseudonyms allowed, except apparently if you call yourself Lady Gaga or 50 Cent.</p>

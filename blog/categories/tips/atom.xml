@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Tips | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/tips/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Tips | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rolling out your own Fusion Drive with the recovery partition]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
+    <link href="http://robteix.github.com/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
     <updated>2012-11-09T08:18:34-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
+    <id>http://robteix.github.com/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
     <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM.png"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM-580x493.png" alt="disk utility showing Fusion Drive" /></a></p>
 
 <p>My Macbook Pro has two disks, an HDD and an SSD, each of 240GB or so. With the details of Apple's Fusion Drive coming out I decided to do what any reasonable geek would do to their production computer: I've decided to implement my own untested, highly experimental and barely understood Fusion Drive.</p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to set up Emacs on Windows]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows/"/>
+    <link href="http://robteix.github.com/blog/2011/06/13/how-to-set-up-emacs-on-windows/"/>
     <updated>2011-06-13T15:38:49-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/06/13/how-to-set-up-emacs-on-windows</id>
+    <id>http://robteix.github.com/blog/2011/06/13/how-to-set-up-emacs-on-windows</id>
     <content type="html"><![CDATA[<p>Just so I have it documented somewhere for future reference, here's how to quickly set <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> up on Windows.</p>
 
 <ol>

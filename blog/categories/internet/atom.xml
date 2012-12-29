@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Internet | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/internet/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Internet | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/internet/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Godwin's Law is anything but]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/07/11/godwins-law-is-anything-but/"/>
+    <link href="http://robteix.github.com/blog/2011/07/11/godwins-law-is-anything-but/"/>
     <updated>2011-07-11T11:43:57-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/07/11/godwins-law-is-anything-but</id>
+    <id>http://robteix.github.com/blog/2011/07/11/godwins-law-is-anything-but</id>
     <content type="html"><![CDATA[<p>I’ve got many gripes with the internet, I’ll admit. One of those is the overuse of Godwin’s Law. Actually, it’s a double offence because not only people overuse it, but this Law is anything but.</p>
 
 <p>But let’s start with the misuse. I posted a while ago to Facebook that I had finished reading <a href="http://www.amazon.com/gp/product/1451651686/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1451651686&amp;linkCode=as2&amp;tag=itsuptoyoma-20">The Rise and Fall of the Third Reich</a> and I mentioned how scary it was that a place right in the heart of “civilized” Europe could have fallen to that madness so quickly. A small discussion formed with some people until one of my geek friends commented something to the effect of—</p>

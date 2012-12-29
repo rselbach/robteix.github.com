@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Space | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/space/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Space | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/space/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Could something like “Apollo 18” really have existed?]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed/"/>
+    <link href="http://robteix.github.com/blog/2011/09/17/could-something-like-apollo-18-really-have-existed/"/>
     <updated>2011-09-17T08:01:45-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed</id>
+    <id>http://robteix.github.com/blog/2011/09/17/could-something-like-apollo-18-really-have-existed</id>
     <content type="html"><![CDATA[<p>Conspiracy theories and hoaxes abound when it comes to mankind’s arrival at our moon (or the non-arrival.) One such hoaxes is the <strong>Apollo 20</strong>, a purported top secret mission that back to the moon back in 1976 to fetch some aliens living there. The secret would have been revealed by no other than William Rutledge, who claims to have been an astronaut in that mission and who nowadays lives and writes out of Rwanda.</p>
 
 <p>Arguably this theory was never as popular as its always popular theory that NASA spent billions of dollars to fabricate the moon landings but somehow forgot to paint stars in the ceiling.</p>
@@ -99,18 +99,18 @@
   
   <entry>
     <title type="html"><![CDATA[Jeff Greason on the near future of space exploration]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/07/24/jeff-greason-on-the-near-future-of-space-exploration/"/>
+    <link href="http://robteix.github.com/blog/2011/07/24/jeff-greason-on-the-near-future-of-space-exploration/"/>
     <updated>2011-07-24T12:50:32-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/07/24/jeff-greason-on-the-near-future-of-space-exploration</id>
+    <id>http://robteix.github.com/blog/2011/07/24/jeff-greason-on-the-near-future-of-space-exploration</id>
     <content type="html"><![CDATA[<p>Fascinating TEDx talk about the near future of space exploration. <a href="http://youtu.be/m8PlzDgFQMM">Jeff Greason - Rocket Scientist: Making Space Pay and Having Fun Doing It</a>:</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Very cool video on the Space Shuttle Program]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program/"/>
+    <link href="http://robteix.github.com/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program/"/>
     <updated>2011-07-22T13:56:24-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program</id>
+    <id>http://robteix.github.com/blog/2011/07/22/very-cool-video-on-the-space-shuttle-program</id>
     <content type="html"><![CDATA[<p>After three decades, the Space Shuttle is finally retired.  Check out the video below for a bit of history.  I thought the video so well done!  In a little over 8 minutes it gives you a feeling of how much happened already.  Also, stop to think about this for a minute: 30 FUCKING YEARS.</p>
 
 <p>Most nations who tried to launch payloads into space failed miserably and still haven't achieved it. And yet, THIRTY years ago the Shuttle started operation.</p>

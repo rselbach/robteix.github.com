@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Code | My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/blog/categories/code/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[Category: Code | robteix.com]]></title>
+  <link href="http://robteix.github.com/blog/categories/code/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Google App Engine is making me mad]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
+    <link href="http://robteix.github.com/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
     <updated>2012-08-20T22:14:14-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
+    <id>http://robteix.github.com/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
     <content type="html"><![CDATA[<p>An user found a bug in <a href="http://unico.robteix.com/">Unico</a> and I hunt it down: session data for some users simply fails to load.</p>
 
 <p>While checking appengine's dashboard for logs and whatnot I came across a <strong>Server Error</strong>, nothing else, while trying to check the data store viewer.</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[Anagramizer, a simple anagram solver in Go]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go/"/>
+    <link href="http://robteix.github.com/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go/"/>
     <updated>2011-06-20T21:18:27-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go</id>
+    <id>http://robteix.github.com/blog/2011/06/20/anagramizer-a-simple-anagram-solver-in-go</id>
     <content type="html"><![CDATA[<p>This weekend I took the family to celebrate Father's Day away from town. We went around getting to know parts of the province we live in and never been to.</p>
 
 <p><a href="http://robteix.com/wp-content/uploads/2011/06/IMG_0402.jpg"><img src="http://robteix.com/wp-content/uploads/2011/06/IMG_0402-300x225.jpg" alt="" /></a>We came back yesterday and the plan today was for a nice, calm day at home (it's a holiday of some sort here.) Then I got engaged in a game called <strong>Hanging with Friends</strong>, a mix of the traditional hangman with a bit of Scrabble.</p>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[Euler 9 in Go]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/06/14/euler-9-in-go/"/>
+    <link href="http://robteix.github.com/blog/2011/06/14/euler-9-in-go/"/>
     <updated>2011-06-14T12:30:06-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/06/14/euler-9-in-go</id>
+    <id>http://robteix.github.com/blog/2011/06/14/euler-9-in-go</id>
     <content type="html"><![CDATA[<p>This was surprising to me. For fun I picked one of the Euler algorithms I played with in the past and rewrote it in <a href="http://golang.org">Go</a>. The idea was to rewrite it idiomatically to see how different things might look. Nothing else. The very first thing I did was to get the exact algorithm and rewrite, no idiomatic changes.</p>
 
 <pre><code>package main
@@ -88,9 +88,9 @@ func main() {
   
   <entry>
     <title type="html"><![CDATA[Euler 15 in Python]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2/"/>
+    <link href="http://robteix.github.com/blog/2010/08/07/euler-15-in-python-2/"/>
     <updated>2010-08-07T19:39:27-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2010/08/07/euler-15-in-python-2</id>
+    <id>http://robteix.github.com/blog/2010/08/07/euler-15-in-python-2</id>
     <content type="html"><![CDATA[<p>This one isn't even funny...</p>
 
 <blockquote><p>Starting in the top left corner of a 2x2 grid, there are 6 routes (without backtracking) to the bottom right corner.</p></blockquote>
@@ -118,9 +118,9 @@ print math.factorial(w + h) / (math.factorial(w) * math.factorial(h))
   
   <entry>
     <title type="html"><![CDATA[Euler 11 in Python]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2010/08/06/euler-11-in-python/"/>
+    <link href="http://robteix.github.com/blog/2010/08/06/euler-11-in-python/"/>
     <updated>2010-08-06T14:19:56-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2010/08/06/euler-11-in-python</id>
+    <id>http://robteix.github.com/blog/2010/08/06/euler-11-in-python</id>
     <content type="html"><![CDATA[<p>Project Euler's problem #11 statement goes:</p>
 
 <blockquote><p>In the 20x20 grid below, four numbers along a diagonal line have been marked in red.</p></blockquote>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://robteix.github.com/robteix/atom.xml" rel="self"/>
-  <link href="http://robteix.github.com/robteix/"/>
-  <updated>2012-12-29T10:54:28-03:00</updated>
-  <id>http://robteix.github.com/robteix/</id>
+  <title><![CDATA[robteix.com]]></title>
+  <link href="http://robteix.github.com/atom.xml" rel="self"/>
+  <link href="http://robteix.github.com/"/>
+  <updated>2012-12-29T11:10:56-03:00</updated>
+  <id>http://robteix.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Roberto Teixeira]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Container changes in C++11]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11/"/>
+    <link href="http://robteix.github.com/blog/2012/12/15/container-changes-in-c11/"/>
     <updated>2012-12-15T11:41:36-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/12/15/container-changes-in-c11</id>
+    <id>http://robteix.github.com/blog/2012/12/15/container-changes-in-c11</id>
     <content type="html"><![CDATA[<p>The recently approved C++11 standard brings a lot of welcome changes to C++ that modernize the language a little bit. Among the many changes, we find that containers have received some special love.</p>
 
 <h1>Initialization</h1>
@@ -150,9 +150,9 @@ for (auto i : m)</p>
   
   <entry>
     <title type="html"><![CDATA[FOR is evil or something]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/19/for-is-evil-or-something/"/>
+    <link href="http://robteix.github.com/blog/2012/11/19/for-is-evil-or-something/"/>
     <updated>2012-11-19T10:31:16-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/19/for-is-evil-or-something</id>
+    <id>http://robteix.github.com/blog/2012/11/19/for-is-evil-or-something</id>
     <content type="html"><![CDATA[<blockquote><p>Have you ever wondered how FORs impact your code? How they are limiting your design and more important how they are transforming your code into an amount of lines without any human meaning?</p></blockquote>
 
 <p>How can you not want to read an article that starts like that? I had to steal the intro from the original. Seriously, I have used FOR since I learned BASIC back in the day. I never thought about how it was limiting my design. I. Must. Learn. How.</p>
@@ -259,9 +259,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Missus Lady Wife's bday]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/11/2114/"/>
+    <link href="http://robteix.github.com/blog/2012/11/11/2114/"/>
     <updated>2012-11-11T12:07:51-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/11/2114</id>
+    <id>http://robteix.github.com/blog/2012/11/11/2114</id>
     <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/20121111-121454.jpg" alt="20121111-121454.jpg" /></a></p>
 
 <p>Wife&#8217;s birthday translates into dad-daughter&#8217;s day out as my wife gets a day-off from us :)</p>
@@ -270,9 +270,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[All those black people...]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/10/all-those-black-people/"/>
+    <link href="http://robteix.github.com/blog/2012/11/10/all-those-black-people/"/>
     <updated>2012-11-10T18:39:16-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/10/all-those-black-people</id>
+    <id>http://robteix.github.com/blog/2012/11/10/all-those-black-people</id>
     <content type="html"><![CDATA[<p>I had a talk with my landlady.</p>
 
 <p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24.jpg"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Protesta-8N-protesta_anti_K_CLAIMA20121108_0264_24-580x368.jpg" alt="Prostest against the Argentine government in Buenos Aires" /></a></p>
@@ -311,18 +311,18 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Quote of the Day]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/10/quote-of-the-day/"/>
+    <link href="http://robteix.github.com/blog/2012/11/10/quote-of-the-day/"/>
     <updated>2012-11-10T08:57:25-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/10/quote-of-the-day</id>
+    <id>http://robteix.github.com/blog/2012/11/10/quote-of-the-day</id>
     <content type="html"><![CDATA[<p>An idiot with a PhD is still an idiot</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Rolling out your own Fusion Drive with the recovery partition]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
+    <link href="http://robteix.github.com/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition/"/>
     <updated>2012-11-09T08:18:34-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
+    <id>http://robteix.github.com/blog/2012/11/09/rolling-out-your-own-fusion-drive-with-the-recovery-partition</id>
     <content type="html"><![CDATA[<p><a href="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM.png"><img src="http://robteixeira.com/wp-content/uploads/2012/11/Screen-Shot-2012-11-09-at-9.32.21-AM-580x493.png" alt="disk utility showing Fusion Drive" /></a></p>
 
 <p>My Macbook Pro has two disks, an HDD and an SSD, each of 240GB or so. With the details of Apple&#8217;s Fusion Drive coming out I decided to do what any reasonable geek would do to their production computer: I&#8217;ve decided to implement my own untested, highly experimental and barely understood Fusion Drive.</p>
@@ -371,9 +371,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Not a-ok]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok/"/>
+    <link href="http://robteix.github.com/blog/2012/11/08/not-a-ok/"/>
     <updated>2012-11-08T14:48:39-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/08/not-a-ok</id>
+    <id>http://robteix.github.com/blog/2012/11/08/not-a-ok</id>
     <content type="html"><![CDATA[<p>I have a little confession to make: our family is going through a rough patch. Both my wife and I are having problems. No, not between us. And both are experiencing very different sorts of problems. But the happening-at-the-same-time complicates the one-supports-the-other thing.</p>
 
 <p>And to compound to that, I have been sick.</p>
@@ -396,9 +396,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Holy sh*t it's hot!]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/08/holy-sht-its-hot/"/>
+    <link href="http://robteix.github.com/blog/2012/11/08/holy-sht-its-hot/"/>
     <updated>2012-11-08T12:32:37-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/08/holy-sht-its-hot</id>
+    <id>http://robteix.github.com/blog/2012/11/08/holy-sht-its-hot</id>
     <content type="html"><![CDATA[<p>When I arrived in Cordoba, Argentina, in 2009, it snowed. Not white-shit snow, but just a tiny bit to tell me “Hey man, see how it’s not too hot in here? It’s going to be alright” I was pretty happy about that.</p>
 
 <p>Temperatures stayed very mild through August and September and I was beginning to like the place. I went to Brazil to bring my wife and daughter who had stayed behind until I got settled here. I told my wife that the climate was mild and she was glad. And then we came back.</p>
@@ -431,9 +431,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[How I accidentally because a domain squatter]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter/"/>
+    <link href="http://robteix.github.com/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter/"/>
     <updated>2012-11-01T21:39:23-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter</id>
+    <id>http://robteix.github.com/blog/2012/11/01/how-i-accidentally-because-a-domain-squatter</id>
     <content type="html"><![CDATA[<p>A couple of days ago, I was listening to one of my favourite podcasts, <a href="http://5by5.tv/frequency">The Frequency</a>, when one of the hosts, Dan Benjamin, thought of a cool domain name, <a href="http://ohitson.com">ohitson.com</a> and checked to see if it was available. Turns out it was and he said he was registering right there and then. Now, two things: (a) I was listening to a recorded podcast, not live; and (b) I thought to myself, damn it! it <em>is</em> a cool domain name.</p>
 
 <p>The next day, I launched <a href="http://hover.com">Hover</a> and checked the domain name and to my surprise it was available. I simply thought either Dan had given up on it or, most likely, I had misunderstood the domain name he was talking about and fortunately that had made me thing of <em>this</em> cool domain name. I even checked Google to make sure &#8220;Oh, it&#8217;s on&#8221; was really written like that :P</p>
@@ -450,9 +450,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Disney taking over Star Wars is a good thing]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing/"/>
+    <link href="http://robteix.github.com/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing/"/>
     <updated>2012-11-01T20:59:38-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing</id>
+    <id>http://robteix.github.com/blog/2012/11/01/disney-taking-over-star-wars-is-a-good-thing</id>
     <content type="html"><![CDATA[<p><img src="http://ohitson.com/wp-content/uploads/2012/11/527279_436801283051213_1826357756_n-580x500.jpg" alt="" /></p>
 
 <p>According to everyone on the Internet, George Lucas is selling Lucasfilm and other businesses—including the revered Industrial Light &amp; Magic—to the evil mouse that is The Walt Disney Company.</p>
@@ -497,9 +497,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Don’t Call The New Microsoft Surface RT A Tablet, This Is A PC]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc/"/>
+    <link href="http://robteix.github.com/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc/"/>
     <updated>2012-10-24T17:07:51-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc</id>
+    <id>http://robteix.github.com/blog/2012/10/24/dont-call-the-new-microsoft-surface-rt-a-tablet-this-is-a-pc</id>
     <content type="html"><![CDATA[<p><a href="http://techcrunch.com/2012/10/23/microsoft-surface-rt-review/">Don’t Call The New Microsoft Surface RT A Tablet, This Is A PC</a></p>
 
 <blockquote><p>  The lack of apps is one of the Surface’s main downfalls.</p></blockquote>
@@ -512,9 +512,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Off-the-something drama]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama/"/>
+    <link href="http://robteix.github.com/blog/2012/10/22/off-the-something-drama/"/>
     <updated>2012-10-22T15:06:50-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/10/22/off-the-something-drama</id>
+    <id>http://robteix.github.com/blog/2012/10/22/off-the-something-drama</id>
     <content type="html"><![CDATA[<p>Right in the very first issue of <a href="http://the-magazine.org">The Magazine</a>, I found an interesting article called <a href="http://the-magazine.org/1/baseball-misfits">Baseball Misfits</a> by Jason Snell. In it, Jason talks about the great divide that seems to exist between the geeks who love sports and those who despise them.</p>
 
 <p>I am no stranger to that. I am one of the geeks who dig sports, I know both kinds and, exactly as mentioned in Jason&#8217;s article, I have experienced the <em>wrath</em> from the geeks who don&#8217;t dig sports when one who does happens to mention the subject.</p>
@@ -527,9 +527,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[The day a videogame changed my life]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/10/04/the-saturday-a-videogame-changed-my-life/"/>
+    <link href="http://robteix.github.com/blog/2012/10/04/the-saturday-a-videogame-changed-my-life/"/>
     <updated>2012-10-04T12:32:42-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/10/04/the-saturday-a-videogame-changed-my-life</id>
+    <id>http://robteix.github.com/blog/2012/10/04/the-saturday-a-videogame-changed-my-life</id>
     <content type="html"><![CDATA[<p>Last night, as I tried getting my three year-old to sleep so I could play my brand-new copy of <a href="http://www.easports.com/nhl">NHL 13</a>, I had an epiphany of sorts. It dawned on me how much videogames influenced my real-life pleasures. And the story actually started a long time ago.</p>
 
 <p><img src="http://cd.textfiles.com/gifgalaxy/PROGRAMS/VGACOPY.GIF" alt="http://cd.textfiles.com/gifgalaxy/PROGRAMS/VGACOPY.GIF" />The story begins in a rather pleasant Saturday afternoon in late 1993. We went into a shoddy building, walked up the stairs to the first floor and found this rather unassuming office at the end of the hall. We skimmed over a thick catalog of game titles and started picking a few we wanted to try. They were cheap, pirated games. After selecting the titles, the guy there noted them down and asked us to wait. In the back, two guys got some floppy disks and started copying the games for us with <a href="http://www.moenk.de/pages/vgacopy.html">VGAcopy</a>. Nice!</p>
@@ -550,9 +550,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Google App Engine is making me mad]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
+    <link href="http://robteix.github.com/blog/2012/08/20/google-app-engine-is-making-me-mad/"/>
     <updated>2012-08-20T22:14:14-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
+    <id>http://robteix.github.com/blog/2012/08/20/google-app-engine-is-making-me-mad</id>
     <content type="html"><![CDATA[<p>An user found a bug in <a href="http://unico.robteix.com/">Unico</a> and I hunt it down: session data for some users simply fails to load.</p>
 
 <p>While checking appengine&#8217;s dashboard for logs and whatnot I came across a <strong>Server Error</strong>, nothing else, while trying to check the data store viewer.</p>
@@ -565,9 +565,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[In which Rob gets app.net]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net/"/>
+    <link href="http://robteix.github.com/blog/2012/08/19/in-which-rob-gets-app-net/"/>
     <updated>2012-08-19T20:48:24-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/08/19/in-which-rob-gets-app-net</id>
+    <id>http://robteix.github.com/blog/2012/08/19/in-which-rob-gets-app-net</id>
     <content type="html"><![CDATA[<p>I got myself an app.net account (<a href="https://alpha.app.net/robteix">@robteix</a>) a couple of days ago. [Cue the <a href="http://ihave50dollars.com/">ihave50dollars.com</a> jokes.]  Still haven&#8217;t really used it a lot but am starting to enjoy the discussions about the API development.</p>
 
 <p>I joined mostly to support the idea—which I must admit is pretty insane. But what would the world be without insane ideas? ADN will <strong>never</strong> be Twitter or Facebook, but maybe it doesn&#8217;t need to be. Maybe it really only needs to be a same environment for people like me. I like it.</p>
@@ -583,9 +583,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[John Scalzi's Redshirts]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts/"/>
+    <link href="http://robteix.github.com/blog/2012/07/15/john-scalzis-redshirts/"/>
     <updated>2012-07-15T10:59:28-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2012/07/15/john-scalzis-redshirts</id>
+    <id>http://robteix.github.com/blog/2012/07/15/john-scalzis-redshirts</id>
     <content type="html"><![CDATA[<p>Just finished reading John Scalzi&#8217;s <a href="http://www.amazon.com/gp/product/B0079XPUOW/ref=as_li_ss_tl?ie=UTF8&amp;tag=itsuptoyoma-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0079XPUOW">Redshirts</a><img src="http://www.assoc-amazon.com/e/ir?t=itsuptoyoma-20&amp;l=as2&amp;o=1&amp;a=B0079XPUOW" alt="" />. It&#8217;s funny, sometimes silly, but it&#8217;s also a page turner. I read it in a few hours, just could not put it down. And Scalzi manages to make something that looks like it&#8217;s obvious and then give it a twist and another and then another until you go, <em>oh that&#8217;s the thing&#8230;</em> It is definitely not hard scifi! I&#8217;d describe it more as a satyrical work making fun—albeit in a positive way!—of scifi. I loved it.</p>
 
 <p>Oh, and it&#8217;s totally <em>meta</em>!</p>
@@ -594,9 +594,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Could something like “Apollo 18” really have existed?]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed/"/>
+    <link href="http://robteix.github.com/blog/2011/09/17/could-something-like-apollo-18-really-have-existed/"/>
     <updated>2011-09-17T08:01:45-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/09/17/could-something-like-apollo-18-really-have-existed</id>
+    <id>http://robteix.github.com/blog/2011/09/17/could-something-like-apollo-18-really-have-existed</id>
     <content type="html"><![CDATA[<p>Conspiracy theories and hoaxes abound when it comes to mankind’s arrival at our moon (or the non-arrival.) One such hoaxes is the <strong>Apollo 20</strong>, a purported top secret mission that back to the moon back in 1976 to fetch some aliens living there. The secret would have been revealed by no other than William Rutledge, who claims to have been an astronaut in that mission and who nowadays lives and writes out of Rwanda.</p>
 
 <p>Arguably this theory was never as popular as its always popular theory that NASA spent billions of dollars to fabricate the moon landings but somehow forgot to paint stars in the ceiling.</p>
@@ -678,9 +678,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[My need for anonymity]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity/"/>
+    <link href="http://robteix.github.com/blog/2011/08/04/my-need-for-anonymity/"/>
     <updated>2011-08-04T16:54:38-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/08/04/my-need-for-anonymity</id>
+    <id>http://robteix.github.com/blog/2011/08/04/my-need-for-anonymity</id>
     <content type="html"><![CDATA[<p><img src="http://robteix.com/wp-content/uploads/2011/08/abhishekb-4S22MEjXDA0-hd-580x389.jpg" alt="" /></p>
 
 <p>Much has been said about the pros and cons of anonymity lately, prompted by Google+ TOS which require the use of one’s real name. No pseudonyms allowed, except apparently if you call yourself Lady Gaga or 50 Cent.</p>
@@ -703,9 +703,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Think]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/08/03/think/"/>
+    <link href="http://robteix.github.com/blog/2011/08/03/think/"/>
     <updated>2011-08-03T11:58:57-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/08/03/think</id>
+    <id>http://robteix.github.com/blog/2011/08/03/think</id>
     <content type="html"><![CDATA[<p>People&#8217;s gullibility often staggers me. A couple of days ago a photo and accompanying story started popping up everywhere.</p>
 
 <p><img src="http://robteix.com/wp-content/uploads/2011/08/vilnius_mayor_1_How_Vilnius_city_mayor_deals_with_illegally_parked_cars-s720x480-212009-580.jpg" alt="" /></p>
@@ -728,9 +728,9 @@ public void printSlips() {
   
   <entry>
     <title type="html"><![CDATA[Chrome and the new Lion full-screen behaviour]]></title>
-    <link href="http://robteix.github.com/robteix/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour/"/>
+    <link href="http://robteix.github.com/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour/"/>
     <updated>2011-08-01T23:19:42-03:00</updated>
-    <id>http://robteix.github.com/robteix/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour</id>
+    <id>http://robteix.github.com/blog/2011/08/01/chrome-and-the-new-lion-full-screen-behaviour</id>
     <content type="html"><![CDATA[<p><img src="http://robteix.com/wp-content/uploads/2011/08/2687444500_e8beddd5e7_b1-580x375.jpg" alt="Three wise monkeys by Anderson Mancini" /></p>
 
 <p>While I was ranting about the annoyances I found in OS X Lion today, a friend commented he had no issues at all, except for the full-screen mode. I got curious because the new Lion full-screen mode is probably the only new feature I found interesting. What did Apple do so wrong?</p>
